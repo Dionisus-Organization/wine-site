@@ -24,7 +24,7 @@ namespace wineApi.Models
         public double Score { get; set; }
         public string Confidence_Index { get; set; }
         public int Journalist_Count { get; set; }
-        public long? Lwin { get; set; }
-        public long? Lwin_11 { get; set; }
+        public string? Lwin { get; set; }
+        public string? Lwin_11 { get; set; }
     }
 }
