@@ -11,6 +11,6 @@ namespace wineApi.Models
         public WineContext(DbContextOptions<WineContext> options) 
             : base( options ) { }
 
-        public DbSet<WineModel> WineModels { get; set; }
+        public DbSet<WineModel> Wine { get; set; }
     }
 }

@@ -24,14 +24,14 @@ namespace wineApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WineModel>>> GetWineModels()
         {
-            return await _context.WineModels.ToListAsync();
+            return await _context.Wine.ToListAsync();
         }
 
-        // GET: api/WineModels/5
+        // GET: api/Wine/5
         [HttpGet("{id}")]
         public async Task<ActionResult<WineModel>> GetWineModel(int id)
         {
-            var wineModel = await _context.WineModels.FindAsync(id);
+            var wineModel = await _context.Wine.FindAsync(id);
 
             if (wineModel == null)
             {
@@ -79,7 +79,7 @@ namespace wineApi.Controllers
         [HttpPost]
         public async Task<ActionResult<WineModel>> PostWineModel(WineModel wineModel)
         {
-            _context.WineModels.Add(wineModel);
+            _context.Wine.Add(wineModel);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetWineModel", new { id = wineModel.Wine_Id }, wineModel);
@@ -89,13 +89,13 @@ namespace wineApi.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<WineModel>> DeleteWineModel(int id)
         {
-            var wineModel = await _context.WineModels.FindAsync(id);
+            var wineModel = await _context.Wine.FindAsync(id);
             if (wineModel == null)
             {
                 return NotFound();
             }
 
-            _context.WineModels.Remove(wineModel);
+            _context.Wine.Remove(wineModel);
             await _context.SaveChangesAsync();
 
             return wineModel;
@@ -103,7 +103,7 @@ namespace wineApi.Controllers
 
         private bool WineModelExists(int id)
         {
-            return _context.WineModels.Any(e => e.Wine_Id == id);
+            return _context.Wine.Any(e => e.Wine_Id == id);
         }
     }
 }

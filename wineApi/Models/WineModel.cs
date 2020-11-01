@@ -21,10 +21,10 @@ namespace wineApi.Models
         public string Vintage { get; set; }
         public string Date { get; set; }
         public bool Is_Primeurs { get; set; }
-        public double Score { get; set; }
+        public float Score { get; set; }
         public string Confidence_Index { get; set; }
         public int Journalist_Count { get; set; }
-        public string? Lwin { get; set; }
-        public string? Lwin_11 { get; set; }
+        public string Lwin { get; set; }
+        public string Lwin_11 { get; set; }
     }
 }
