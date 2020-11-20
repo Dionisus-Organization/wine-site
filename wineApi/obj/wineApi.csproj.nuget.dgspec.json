@@ -14,7 +14,7 @@
         "outputPath": "C:\\study\\wine-site\\wineApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Microsoft\\Xamarin\\NuGet"
         ],
         "configFilePaths": [
           "C:\\Users\\godOfBugs\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "CassandraCSharpDriver": {
+              "target": "Package",
+              "version": "[3.16.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.9, )"
