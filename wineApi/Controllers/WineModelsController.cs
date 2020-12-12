@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using wineApi.Models;
+
+using wineApi.Cassandra;
 
 namespace wineApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/wine")]
     [ApiController]
     public class WineModelsController : ControllerBase
     {
@@ -17,10 +17,10 @@ namespace wineApi.Controllers
 
         // GET: api/WineModels
         [HttpGet]
-        //public async Task<ActionResult<IEnumerable<WineModel>>> GetWineModels()
-        //{
-        //    return new ActionResult<IEnumerable<WineModel>>();
-        //}
+        public async Task<IEnumerable<UserModel>> GetWineModels()
+        {
+            return await CassandraConnection.GetAllData<UserModel>("wine");
+        }
 
         // GET: api/Wine/5
         [HttpGet("{id}")]

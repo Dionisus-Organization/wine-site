@@ -29,12 +29,9 @@ namespace wineApi.Cassandra
             return instance ??= new CassandraConnection();
         }
 
-        public static async Task<List<T>> GetAllData<T>(string tableName)
+        public static async Task<IEnumerable<T>> GetAllData<T>(string tableName)
         {
-            var requestStatement = await session.PrepareAsync("select * from ?");
-            var batch = new BatchStatement().Add(requestStatement.Bind(tableName));
-
-            return await mapper.FetchAsync<T>(batch);
+            return await mapper.FetchAsync<T>($"SELECT * FROM {tableName}");
         }
 
 
