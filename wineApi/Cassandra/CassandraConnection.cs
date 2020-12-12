@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Cassandra;
+using Cassandra.Mapping;
 
 namespace wineApi.Cassandra
 {
@@ -12,21 +13,28 @@ namespace wineApi.Cassandra
         private static CassandraConnection instance = null;
         private static Cluster cluster;
         private static ISession session;
+        private static Mapper mapper;
 
         static CassandraConnection() 
         {
             // Create a cluster instance
-            cluster = Cluster.Builder().AddContactPoint("").Build();
+            cluster = Cluster.Builder().AddContactPoint("127.0.0.1").Build();
             //Create connections to the nodes using a keyspace
-            session = cluster.Connect("");
+            session = cluster.Connect("test_keyspace");
+            mapper = new Mapper(session);
         }
 
         public static CassandraConnection GetInstance()
         {
-            if (instance == null)
-                instance = new CassandraConnection();
+            return instance ?? (instance = new CassandraConnection());
+        }
 
-            return instance;
+        public static async Task<List<T>> GetAllData<T>(string tableName)
+        {
+            var requestStatement = await session.PrepareAsync("select * from ?");
+            var batch = new BatchStatement().Add(requestStatement.Bind(tableName));
+
+            return await mapper.FetchAsync<T>(batch);
         }
     }
 }
