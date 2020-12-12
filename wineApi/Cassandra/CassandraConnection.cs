@@ -26,7 +26,7 @@ namespace wineApi.Cassandra
 
         public static CassandraConnection GetInstance()
         {
-            return instance ?? (instance = new CassandraConnection());
+            return instance ??= new CassandraConnection();
         }
 
         public static async Task<List<T>> GetAllData<T>(string tableName)
@@ -36,5 +36,7 @@ namespace wineApi.Cassandra
 
             return await mapper.FetchAsync<T>(batch);
         }
+
+
     }
 }
