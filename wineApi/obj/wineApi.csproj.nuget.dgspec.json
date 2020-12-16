@@ -73,6 +73,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.4, )"
+            },
+            "MyMediaLite": {
+              "target": "Package",
+              "version": "[3.11.0, )"
             }
           },
           "imports": [
