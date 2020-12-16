@@ -1,3 +1,4 @@
+
 Skip to content
 Search or jump to…
 
@@ -427,3 +428,9 @@ _UpgradeReport_Files/
 Thumbs.db
 Desktop.ini
 .DS_Store
+# Dependency directories
+node_modules/
+
+.idea/
+
+!.gitkeep
