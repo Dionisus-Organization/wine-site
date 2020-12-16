@@ -8,7 +8,7 @@ namespace wineApi
     /// <summary>
     /// Запись, описывающая модель пользователя
     /// </summary>
-    public record UserModel (int Id, string Name, string Last_name);
+    public record UserModel (int Id, string Name, string LastName);
 
     /// <summary>
     /// Запись, описывающая модель вина
@@ -16,31 +16,31 @@ namespace wineApi
     public record WineModel (
         int Id, 
         string Wine, 
-        string Wine_Slug, 
+        string WineSlug, 
         string Appellation,
-        string Appellation_Slug,
+        string AppellationSlug,
         string Color,
-        string Wine_Type,
+        string WineType,
         string Region,
         string Country,
         string Classification,
         string Vintage,
         string Date,
-        bool Is_Primeurs,
+        bool IsPrimeurs,
         float Score,
-        string Confidence_Index,
-        int Journalist_Count,
+        string ConfidenceIndex,
+        int JournalistCount,
         string Lwin,
-        string Lwin_11
+        string Lwin11
         );
 
     /// <summary>
     /// 
     /// </summary>
-    public record Country(int Id, string CountryName, IEnumerable<Region> Regions);
+    public record CountryModel(int Id, string CountryName, IEnumerable<RegionModel> Regions);
 
     /// <summary>
     /// 
     /// </summary>
-    public record Region(int Id, string RegionName);
+    public record RegionModel(int Id, string RegionName);
 }
