@@ -8,11 +8,6 @@ using Cassandra.Mapping;
 
 namespace wineApi.Cassandra
 {
-    public class CassandraMappings 
-    {
-
-    }
-
     public class AllMappings : Mappings
     {
         public AllMappings()
@@ -47,16 +42,6 @@ namespace wineApi.Cassandra
                 .Column(u => u.JournalistCount, cm => cm.WithName("journalist_count"))
                 .Column(u => u.Lwin, cm => cm.WithName("lwin"))
                 .Column(u => u.Lwin11, cm => cm.WithName("Llin11"));
-
-            For<CountryModel>()
-                .KeyspaceName("")
-                .TableName("country")
-                .PartitionKey(u => u.Id);
-
-            For<RegionModel>()
-                .KeyspaceName("")
-                .TableName("region")
-                .PartitionKey(u => u.Id);
         }
     }
 }

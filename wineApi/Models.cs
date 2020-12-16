@@ -33,14 +33,4 @@ namespace wineApi
         string Lwin,
         string Lwin11
         );
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public record CountryModel(int Id, string CountryName, IEnumerable<RegionModel> Regions);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public record RegionModel(int Id, string RegionName);
 }

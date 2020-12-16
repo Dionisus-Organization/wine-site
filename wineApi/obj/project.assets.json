@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "C5/2.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/C5.dll": {}
+        },
+        "runtime": {
+          "lib/net40/C5.dll": {}
+        }
+      },
       "CassandraCSharpDriver/3.16.1": {
         "type": "package",
         "dependencies": {
@@ -30,6 +39,17 @@
         },
         "runtime": {
           "lib/netstandard2.0/K4os.Compression.LZ4.dll": {}
+        }
+      },
+      "MathNet.Numerics/2.6.1": {
+        "type": "package",
+        "compile": {
+          "lib/net40/MathNet.Numerics.IO.dll": {},
+          "lib/net40/MathNet.Numerics.dll": {}
+        },
+        "runtime": {
+          "lib/net40/MathNet.Numerics.IO.dll": {},
+          "lib/net40/MathNet.Numerics.dll": {}
         }
       },
       "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
@@ -909,6 +929,19 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "MyMediaLite/3.11.0": {
+        "type": "package",
+        "dependencies": {
+          "C5": "2.3.0",
+          "MathNet.Numerics": "2.6.1"
+        },
+        "compile": {
+          "lib/net40/MyMediaLite.dll": {}
+        },
+        "runtime": {
+          "lib/net40/MyMediaLite.dll": {}
         }
       },
       "NETStandard.Library/1.6.1": {
@@ -2863,6 +2896,24 @@
     }
   },
   "libraries": {
+    "C5/2.3.0": {
+      "sha512": "3trMcHFzmpPeRc0zzlU9LQVR9kFP4P/JpaNmKXRkTApzvJ3KiYRHHWuc7Ja2Eqp+AOZGmfQkjn/FTyxShB4I2A==",
+      "type": "package",
+      "path": "c5/2.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "c5.2.3.0.nupkg.sha512",
+        "c5.nuspec",
+        "lib/net35/C5.dll",
+        "lib/net40/C5.dll",
+        "lib/netcore45/C5.dll",
+        "lib/portable-net4+sl5+wp8+win8/C5.dll",
+        "lib/sl50/C5.dll",
+        "lib/wp8/C5.dll",
+        "lib/wpa81/C5.dll"
+      ]
+    },
     "CassandraCSharpDriver/3.16.1": {
       "sha512": "mAwWfa1H5lWmKtPtTz6T/n47ur3zZFcISLFOyD0g6D69ucmimeh+uSxEm7nZI7AY7XF7DGzZsJkb27b1vdGl9g==",
       "type": "package",
@@ -2895,6 +2946,28 @@
         "lib/netstandard1.6/K4os.Compression.LZ4.xml",
         "lib/netstandard2.0/K4os.Compression.LZ4.dll",
         "lib/netstandard2.0/K4os.Compression.LZ4.xml"
+      ]
+    },
+    "MathNet.Numerics/2.6.1": {
+      "sha512": "zuBD6A+ptOyKcFuZM7qx58T9tKQG6I2HxQEIbevyQ3iXfuBmviPbRIPWBjUi0oM+e9CD4bA/Y+/l512Qz58P5w==",
+      "type": "package",
+      "path": "mathnet.numerics/2.6.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/MathNet.Numerics.IO.dll",
+        "lib/net40/MathNet.Numerics.IO.pdb",
+        "lib/net40/MathNet.Numerics.IO.xml",
+        "lib/net40/MathNet.Numerics.dll",
+        "lib/net40/MathNet.Numerics.pdb",
+        "lib/net40/MathNet.Numerics.xml",
+        "lib/portable-net40+windows8+wp8+sl5/MathNet.Numerics.dll",
+        "lib/portable-net40+windows8+wp8+sl5/MathNet.Numerics.pdb",
+        "lib/portable-net40+windows8+wp8+sl5/MathNet.Numerics.xml",
+        "license.txt",
+        "mathnet.numerics.2.6.1.nupkg.sha512",
+        "mathnet.numerics.nuspec",
+        "readme.txt"
       ]
     },
     "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
@@ -4370,6 +4443,21 @@
         "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.xml",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "MyMediaLite/3.11.0": {
+      "sha512": "WUQ/9hdio5w9q0MbZVt3+AK5zM45jX4ewwelMGyRSIXhsobV6mENCIHRVqnowIqsBQ6e+w0k0kywyJwHJz0qPA==",
+      "type": "package",
+      "path": "mymedialite/3.11.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "gpl.txt",
+        "lib/net40/MyMediaLite.dll",
+        "lib/net40/MyMediaLite.xml",
+        "license.txt",
+        "mymedialite.3.11.0.nupkg.sha512",
+        "mymedialite.nuspec"
       ]
     },
     "NETStandard.Library/1.6.1": {
@@ -9139,7 +9227,8 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.9",
       "Microsoft.EntityFrameworkCore.Sqlite >= 3.1.9",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.9",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4",
+      "MyMediaLite >= 3.11.0"
     ]
   },
   "packageFolders": {
@@ -9215,6 +9304,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[3.1.4, )"
+          },
+          "MyMediaLite": {
+            "target": "Package",
+            "version": "[3.11.0, )"
           }
         },
         "imports": [
@@ -9238,5 +9331,37 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'C5 2.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "C5",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MathNet.Numerics 2.6.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "MathNet.Numerics",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MyMediaLite 3.11.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "MyMediaLite",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }
