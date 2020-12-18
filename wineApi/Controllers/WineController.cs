@@ -11,15 +11,51 @@ namespace wineApi.Controllers
 {
     [Route("api/wine")]
     [ApiController]
-    public class WineModelsController : ControllerBase
+    public class WineController : ControllerBase
     {
-
-
         // GET: api/WineModels
         [HttpGet]
-        public async Task<IEnumerable<UserModel>> GetWineModels()
+        public IEnumerable<WineModel> GetWineModels()
         {
-            return await CassandraConnection.GetAllData<UserModel>("wine");
+            return new[]
+            {
+                new WineModel(1, 
+                    "Wine1", 
+                    "WineSlug1",
+                    "Appellation",
+                    "AppellationSlug",
+                    "Red",
+                    "Cool",
+                    "SomeRegion",
+                    "France",
+                    "Luxury",
+                    "Too Vintage",
+                    "1950",
+                    true,
+                    10,
+                    "2",
+                    4,
+                    "Lwin",
+                    "Lwin11"),
+                new WineModel(2, 
+                    "Wine2", 
+                    "WineSlug2",
+                    "Appellation",
+                    "AppellationSlug",
+                    "Pink",
+                    "So-so",
+                    "SomeRegion",
+                    "France",
+                    "Luxury",
+                    "Too Vintage",
+                    "1870",
+                    true,
+                    10,
+                    "2",
+                    4,
+                    "Lwin",
+                    "Lwin11"),
+            };
         }
 
         // GET: api/Wine/5
