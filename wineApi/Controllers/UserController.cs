@@ -9,9 +9,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using wineApi.Cassandra;
+using Microsoft.AspNetCore.Authorization;
 
 namespace wineApi.Controllers
 {
+    [Authorize]
     [Route("api/user")]
     [ApiController]
     public class UserController : Controller

@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/home/master/wine-site/wineApi/wineApi.csproj": {}
+    "C:\\Users\\Aigul\\Desktop\\sf\\wine-site\\wineApi\\wineApi.csproj": {}
   },
   "projects": {
-    "/home/master/wine-site/wineApi/wineApi.csproj": {
+    "C:\\Users\\Aigul\\Desktop\\sf\\wine-site\\wineApi\\wineApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/master/wine-site/wineApi/wineApi.csproj",
+        "projectUniqueName": "C:\\Users\\Aigul\\Desktop\\sf\\wine-site\\wineApi\\wineApi.csproj",
         "projectName": "wineApi",
-        "projectPath": "/home/master/wine-site/wineApi/wineApi.csproj",
-        "packagesPath": "/home/master/.nuget/packages/",
-        "outputPath": "/home/master/wine-site/wineApi/obj/",
+        "projectPath": "C:\\Users\\Aigul\\Desktop\\sf\\wine-site\\wineApi\\wineApi.csproj",
+        "packagesPath": "C:\\Users\\Aigul\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Aigul\\Desktop\\sf\\wine-site\\wineApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/home/master/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Aigul\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -91,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
