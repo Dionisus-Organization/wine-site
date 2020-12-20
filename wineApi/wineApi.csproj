@@ -19,5 +19,9 @@
     <PackageReference Include="MyMediaLite" Version="3.11.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\wineApiML.Model\wineApiML.Model.csproj" />
+  </ItemGroup>
+
 
 </Project>

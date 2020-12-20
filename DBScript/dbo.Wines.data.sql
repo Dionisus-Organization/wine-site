@@ -1,7 +1,7 @@
 ﻿Declare @JSON varchar(max)
 SELECT @JSON=BulkColumn
 FROM OPENROWSET (BULK 'C:\study\GroupProject\result\data.json', SINGLE_CLOB) import
-insert into Wine
+insert into wineDB
 select * 
 from openjson (@JSON)
 with

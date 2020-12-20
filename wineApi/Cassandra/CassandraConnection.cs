@@ -18,9 +18,11 @@ namespace wineApi.Cassandra
         static CassandraConnection() 
         {
             // Create a cluster instance
-            cluster = Cluster.Builder().AddContactPoint("127.0.0.1").Build();
+            cluster = Cluster.Builder().AddContactPoint(Environment.GetEnvironmentVariable( "CASSANDRA_ADDRESS" ) ).Build();
             //Create connections to the nodes using a keyspace
-            session = cluster.Connect("test_keyspace");
+            session = cluster.Connect( Environment.GetEnvironmentVariable( "KEYSPACE_NAME") );
+
+            MappingConfiguration.Global.Define<AllMappings>();
             mapper = new Mapper(session);
         }
 

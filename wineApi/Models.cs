@@ -33,4 +33,9 @@ namespace wineApi
         string Lwin,
         string Lwin11
         );
+
+    /// <summary>
+    /// Запись, описывающая модель оценки вин
+    /// </summary>
+    public record RatingModel(int WineId, int UserId, float Rating);
 }

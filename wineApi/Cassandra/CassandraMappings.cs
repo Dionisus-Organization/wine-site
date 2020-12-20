@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-using Cassandra;
 using Cassandra.Mapping;
 
 namespace wineApi.Cassandra
@@ -13,7 +9,7 @@ namespace wineApi.Cassandra
         public AllMappings()
         {
             For<UserModel>()
-                .KeyspaceName("test_keypsace")
+                .KeyspaceName( Environment.GetEnvironmentVariable( "KEYSPACE_NAME" ) )
                 .TableName("user")
                 .PartitionKey(u => u.Id)
                 .Column(u => u.Id, cm => cm.WithName("id"))
@@ -21,8 +17,8 @@ namespace wineApi.Cassandra
                 .Column(u => u.LastName, cm => cm.WithName("last_name"));
 
             For<WineModel>()
-                .KeyspaceName("test_keypsace")
-                .TableName("Wine")
+                .KeyspaceName( Environment.GetEnvironmentVariable( "KEYSPACE_NAME" ) )
+                .TableName("wine")
                 .PartitionKey(u => u.Id)
                 .Column(u => u.Id, cm => cm.WithName("id"))
                 .Column(u => u.Wine, cm => cm.WithName("wine"))
@@ -42,6 +38,14 @@ namespace wineApi.Cassandra
                 .Column(u => u.JournalistCount, cm => cm.WithName("journalist_count"))
                 .Column(u => u.Lwin, cm => cm.WithName("lwin"))
                 .Column(u => u.Lwin11, cm => cm.WithName("Llin11"));
+
+            For<RatingModel>()
+                .KeyspaceName( Environment.GetEnvironmentVariable( "KEYSPACE_NAME" ) )
+                .TableName( "wine" )
+                .PartitionKey( u => u.UserId )
+                .Column( u => u.UserId, cm => cm.WithName( "userid" ) )
+                .Column( u => u.WineId, cm => cm.WithName( "wineid" ) )
+                .Column( u => u.Rating, cm => cm.WithName( "rating" ) );
         }
     }
 }

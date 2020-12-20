@@ -13,7 +13,9 @@
       "commandName": "IISExpress",
       "launchUrl": "wineModels",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "KEYSPACE_NAME": "wine_keyspace",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "CASSANDRA_ADDRESS": "127.0.0.1"
       }
     },
     "wineApi": {
