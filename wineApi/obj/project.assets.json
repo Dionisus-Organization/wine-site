@@ -2,15 +2,6 @@
   "version": 3,
   "targets": {
     "net5.0": {
-      "C5/2.3.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/C5.dll": {}
-        },
-        "runtime": {
-          "lib/net40/C5.dll": {}
-        }
-      },
       "CassandraCSharpDriver/3.16.1": {
         "type": "package",
         "dependencies": {
@@ -39,17 +30,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/K4os.Compression.LZ4.dll": {}
-        }
-      },
-      "MathNet.Numerics/2.6.1": {
-        "type": "package",
-        "compile": {
-          "lib/net40/MathNet.Numerics.IO.dll": {},
-          "lib/net40/MathNet.Numerics.dll": {}
-        },
-        "runtime": {
-          "lib/net40/MathNet.Numerics.IO.dll": {},
-          "lib/net40/MathNet.Numerics.dll": {}
         }
       },
       "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
@@ -773,131 +753,6 @@
           "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {}
         }
       },
-      "Microsoft.ML/1.5.0-preview2": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.ML.CpuMath": "1.5.0-preview2",
-          "Microsoft.ML.DataView": "1.5.0-preview2",
-          "Newtonsoft.Json": "10.0.3",
-          "System.CodeDom": "4.4.0",
-          "System.Collections.Immutable": "1.5.0",
-          "System.Memory": "4.5.1",
-          "System.Reflection.Emit.Lightweight": "4.3.0",
-          "System.Threading.Tasks.Dataflow": "4.8.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.ML.Core.dll": {},
-          "lib/netstandard2.0/Microsoft.ML.Data.dll": {},
-          "lib/netstandard2.0/Microsoft.ML.KMeansClustering.dll": {},
-          "lib/netstandard2.0/Microsoft.ML.PCA.dll": {},
-          "lib/netstandard2.0/Microsoft.ML.StandardTrainers.dll": {},
-          "lib/netstandard2.0/Microsoft.ML.Transforms.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.ML.Core.dll": {},
-          "lib/netstandard2.0/Microsoft.ML.Data.dll": {},
-          "lib/netstandard2.0/Microsoft.ML.KMeansClustering.dll": {},
-          "lib/netstandard2.0/Microsoft.ML.PCA.dll": {},
-          "lib/netstandard2.0/Microsoft.ML.StandardTrainers.dll": {},
-          "lib/netstandard2.0/Microsoft.ML.Transforms.dll": {}
-        },
-        "build": {
-          "build/netstandard2.0/_._": {}
-        },
-        "runtimeTargets": {
-          "runtimes/linux-x64/native/libLdaNative.so": {
-            "assetType": "native",
-            "rid": "linux-x64"
-          },
-          "runtimes/osx-x64/native/libLdaNative.dylib": {
-            "assetType": "native",
-            "rid": "osx-x64"
-          },
-          "runtimes/win-x64/native/LdaNative.dll": {
-            "assetType": "native",
-            "rid": "win-x64"
-          },
-          "runtimes/win-x86/native/LdaNative.dll": {
-            "assetType": "native",
-            "rid": "win-x86"
-          }
-        }
-      },
-      "Microsoft.ML.CpuMath/1.5.0-preview2": {
-        "type": "package",
-        "compile": {
-          "lib/netcoreapp3.0/Microsoft.ML.CpuMath.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/Microsoft.ML.CpuMath.dll": {}
-        },
-        "build": {
-          "build/netstandard2.0/_._": {}
-        },
-        "runtimeTargets": {
-          "runtimes/linux-x64/nativeassets/netcoreapp3.0/_._": {
-            "assetType": "native",
-            "rid": "linux-x64"
-          },
-          "runtimes/osx-x64/nativeassets/netcoreapp3.0/_._": {
-            "assetType": "native",
-            "rid": "osx-x64"
-          },
-          "runtimes/win-x64/nativeassets/netcoreapp3.0/_._": {
-            "assetType": "native",
-            "rid": "win-x64"
-          },
-          "runtimes/win-x86/nativeassets/netcoreapp3.0/_._": {
-            "assetType": "native",
-            "rid": "win-x86"
-          }
-        }
-      },
-      "Microsoft.ML.DataView/1.5.0-preview2": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.1"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.ML.DataView.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.ML.DataView.dll": {}
-        }
-      },
-      "Microsoft.ML.Recommender/0.17.0-preview2": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.ML": "1.5.0-preview2"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.ML.Recommender.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.ML.Recommender.dll": {}
-        },
-        "build": {
-          "build/netstandard2.0/_._": {}
-        },
-        "runtimeTargets": {
-          "runtimes/linux-x64/native/libMatrixFactorizationNative.so": {
-            "assetType": "native",
-            "rid": "linux-x64"
-          },
-          "runtimes/osx-x64/native/libMatrixFactorizationNative.dylib": {
-            "assetType": "native",
-            "rid": "osx-x64"
-          },
-          "runtimes/win-x64/native/MatrixFactorizationNative.dll": {
-            "assetType": "native",
-            "rid": "win-x64"
-          },
-          "runtimes/win-x86/native/MatrixFactorizationNative.dll": {
-            "assetType": "native",
-            "rid": "win-x86"
-          }
-        }
-      },
       "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
@@ -1054,19 +909,6 @@
             "assetType": "runtime",
             "rid": "win"
           }
-        }
-      },
-      "MyMediaLite/3.11.0": {
-        "type": "package",
-        "dependencies": {
-          "C5": "2.3.0",
-          "MathNet.Numerics": "2.6.1"
-        },
-        "compile": {
-          "lib/net40/MyMediaLite.dll": {}
-        },
-        "runtime": {
-          "lib/net40/MyMediaLite.dll": {}
         }
       },
       "NETStandard.Library/1.6.1": {
@@ -1800,6 +1642,32 @@
           "ref/netstandard1.5/System.Diagnostics.Tracing.dll": {}
         }
       },
+      "System.Dynamic.Runtime/4.0.11": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.11",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Globalization": "4.0.11",
+          "System.Linq": "4.1.0",
+          "System.Linq.Expressions": "4.1.0",
+          "System.ObjectModel": "4.0.12",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Emit": "4.0.1",
+          "System.Reflection.Emit.ILGeneration": "4.0.1",
+          "System.Reflection.Primitives": "4.0.1",
+          "System.Reflection.TypeExtensions": "4.1.0",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Threading": "4.0.11"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Dynamic.Runtime.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Dynamic.Runtime.dll": {}
+        }
+      },
       "System.Globalization/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2219,7 +2087,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/System.Reflection.Emit.ILGeneration.dll": {}
+          "ref/netstandard1.0/_._": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Reflection.Emit.ILGeneration.dll": {}
@@ -2234,7 +2102,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/System.Reflection.Emit.Lightweight.dll": {}
+          "ref/netstandard1.0/_._": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Reflection.Emit.Lightweight.dll": {}
@@ -2852,13 +2720,26 @@
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
-      "System.Threading.Tasks.Dataflow/4.8.0": {
+      "System.Threading.Tasks.Dataflow/4.6.0": {
         "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.11",
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tracing": "4.1.0",
+          "System.Dynamic.Runtime": "4.0.11",
+          "System.Linq": "4.1.0",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Threading": "4.0.11",
+          "System.Threading.Tasks": "4.0.11"
+        },
         "compile": {
-          "ref/netcoreapp2.0/_._": {}
+          "lib/netstandard1.1/System.Threading.Tasks.Dataflow.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp2.0/_._": {}
+          "lib/netstandard1.1/System.Threading.Tasks.Dataflow.dll": {}
         }
       },
       "System.Threading.Tasks.Extensions/4.5.3": {
@@ -2978,42 +2859,10 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "wineApiML.Model/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.ML": "1.5.0-preview2",
-          "Microsoft.ML.Recommender": "0.17.0-preview2"
-        },
-        "compile": {
-          "bin/placeholder/wineApiML.Model.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/wineApiML.Model.dll": {}
-        }
       }
     }
   },
   "libraries": {
-    "C5/2.3.0": {
-      "sha512": "3trMcHFzmpPeRc0zzlU9LQVR9kFP4P/JpaNmKXRkTApzvJ3KiYRHHWuc7Ja2Eqp+AOZGmfQkjn/FTyxShB4I2A==",
-      "type": "package",
-      "path": "c5/2.3.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "c5.2.3.0.nupkg.sha512",
-        "c5.nuspec",
-        "lib/net35/C5.dll",
-        "lib/net40/C5.dll",
-        "lib/netcore45/C5.dll",
-        "lib/portable-net4+sl5+wp8+win8/C5.dll",
-        "lib/sl50/C5.dll",
-        "lib/wp8/C5.dll",
-        "lib/wpa81/C5.dll"
-      ]
-    },
     "CassandraCSharpDriver/3.16.1": {
       "sha512": "mAwWfa1H5lWmKtPtTz6T/n47ur3zZFcISLFOyD0g6D69ucmimeh+uSxEm7nZI7AY7XF7DGzZsJkb27b1vdGl9g==",
       "type": "package",
@@ -3046,28 +2895,6 @@
         "lib/netstandard1.6/K4os.Compression.LZ4.xml",
         "lib/netstandard2.0/K4os.Compression.LZ4.dll",
         "lib/netstandard2.0/K4os.Compression.LZ4.xml"
-      ]
-    },
-    "MathNet.Numerics/2.6.1": {
-      "sha512": "zuBD6A+ptOyKcFuZM7qx58T9tKQG6I2HxQEIbevyQ3iXfuBmviPbRIPWBjUi0oM+e9CD4bA/Y+/l512Qz58P5w==",
-      "type": "package",
-      "path": "mathnet.numerics/2.6.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/MathNet.Numerics.IO.dll",
-        "lib/net40/MathNet.Numerics.IO.pdb",
-        "lib/net40/MathNet.Numerics.IO.xml",
-        "lib/net40/MathNet.Numerics.dll",
-        "lib/net40/MathNet.Numerics.pdb",
-        "lib/net40/MathNet.Numerics.xml",
-        "lib/portable-net40+windows8+wp8+sl5/MathNet.Numerics.dll",
-        "lib/portable-net40+windows8+wp8+sl5/MathNet.Numerics.pdb",
-        "lib/portable-net40+windows8+wp8+sl5/MathNet.Numerics.xml",
-        "license.txt",
-        "mathnet.numerics.2.6.1.nupkg.sha512",
-        "mathnet.numerics.nuspec",
-        "readme.txt"
       ]
     },
     "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
@@ -4018,103 +3845,6 @@
         "microsoft.identitymodel.tokens.nuspec"
       ]
     },
-    "Microsoft.ML/1.5.0-preview2": {
-      "sha512": "0ELaMOgfcO2fbFKE1A89ZG+PMail+H5Qvbmz4ItNWtEpFMo2hOgxa/ymY+2eyeL0PdlStqCsRPiKs6pdo6UmEA==",
-      "type": "package",
-      "path": "microsoft.ml/1.5.0-preview2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE",
-        "THIRD-PARTY-NOTICES.TXT",
-        "build/netstandard2.0/Microsoft.ML.props",
-        "build/netstandard2.0/Microsoft.ML.targets",
-        "lib/netstandard2.0/Microsoft.ML.Core.dll",
-        "lib/netstandard2.0/Microsoft.ML.Core.xml",
-        "lib/netstandard2.0/Microsoft.ML.Data.dll",
-        "lib/netstandard2.0/Microsoft.ML.Data.xml",
-        "lib/netstandard2.0/Microsoft.ML.KMeansClustering.dll",
-        "lib/netstandard2.0/Microsoft.ML.KMeansClustering.xml",
-        "lib/netstandard2.0/Microsoft.ML.PCA.dll",
-        "lib/netstandard2.0/Microsoft.ML.PCA.xml",
-        "lib/netstandard2.0/Microsoft.ML.StandardTrainers.dll",
-        "lib/netstandard2.0/Microsoft.ML.StandardTrainers.xml",
-        "lib/netstandard2.0/Microsoft.ML.Transforms.dll",
-        "lib/netstandard2.0/Microsoft.ML.Transforms.xml",
-        "microsoft.ml.1.5.0-preview2.nupkg.sha512",
-        "microsoft.ml.nuspec",
-        "mlnetlogo.png",
-        "runtimes/linux-x64/native/libLdaNative.so",
-        "runtimes/osx-x64/native/libLdaNative.dylib",
-        "runtimes/win-x64/native/LdaNative.dll",
-        "runtimes/win-x86/native/LdaNative.dll"
-      ]
-    },
-    "Microsoft.ML.CpuMath/1.5.0-preview2": {
-      "sha512": "4KGgW6M1bPczfHI1dClCM3BUxOAb43MlWSw/BLuCQHZMkctXCvNQuYXpjKziFUJ7vJB2G1iLtdeL/WcdMAWG5Q==",
-      "type": "package",
-      "path": "microsoft.ml.cpumath/1.5.0-preview2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE",
-        "THIRD-PARTY-NOTICES.TXT",
-        "build/netstandard2.0/Microsoft.ML.CpuMath.props",
-        "lib/netcoreapp3.0/Microsoft.ML.CpuMath.dll",
-        "lib/netcoreapp3.0/Microsoft.ML.CpuMath.xml",
-        "lib/netstandard2.0/Microsoft.ML.CpuMath.dll",
-        "lib/netstandard2.0/Microsoft.ML.CpuMath.xml",
-        "microsoft.ml.cpumath.1.5.0-preview2.nupkg.sha512",
-        "microsoft.ml.cpumath.nuspec",
-        "mlnetlogo.png",
-        "runtimes/linux-x64/nativeassets/netcoreapp3.0/_._",
-        "runtimes/linux-x64/nativeassets/netstandard2.0/libCpuMathNative.so",
-        "runtimes/osx-x64/nativeassets/netcoreapp3.0/_._",
-        "runtimes/osx-x64/nativeassets/netstandard2.0/libCpuMathNative.dylib",
-        "runtimes/win-x64/nativeassets/netcoreapp3.0/_._",
-        "runtimes/win-x64/nativeassets/netstandard2.0/CpuMathNative.dll",
-        "runtimes/win-x86/nativeassets/netcoreapp3.0/_._",
-        "runtimes/win-x86/nativeassets/netstandard2.0/CpuMathNative.dll"
-      ]
-    },
-    "Microsoft.ML.DataView/1.5.0-preview2": {
-      "sha512": "y++lpxZaoM3IPhgxz6OKrcIS8eXYNk7dtyevKxxVbML9O27YPkuhJqLM/p/NSw9DU44+beFaz38WpdGyEVK8Bg==",
-      "type": "package",
-      "path": "microsoft.ml.dataview/1.5.0-preview2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/netstandard2.0/Microsoft.ML.DataView.dll",
-        "lib/netstandard2.0/Microsoft.ML.DataView.xml",
-        "microsoft.ml.dataview.1.5.0-preview2.nupkg.sha512",
-        "microsoft.ml.dataview.nuspec",
-        "mlnetlogo.png"
-      ]
-    },
-    "Microsoft.ML.Recommender/0.17.0-preview2": {
-      "sha512": "MgKI0PyZjk8VtMQSmYEegIGlQVvf96xRVNKOJbCQz1mUQbZp/aV10wnEMzyiZ0TWoLmbsvRrJikXDuRqwtPoNw==",
-      "type": "package",
-      "path": "microsoft.ml.recommender/0.17.0-preview2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "COPYRIGHT",
-        "LICENSE",
-        "THIRD-PARTY-NOTICES.TXT",
-        "build/netstandard2.0/Microsoft.ML.Recommender.props",
-        "lib/netstandard2.0/Microsoft.ML.Recommender.dll",
-        "lib/netstandard2.0/Microsoft.ML.Recommender.xml",
-        "microsoft.ml.recommender.0.17.0-preview2.nupkg.sha512",
-        "microsoft.ml.recommender.nuspec",
-        "mlnetlogo.png",
-        "runtimes/linux-x64/native/libMatrixFactorizationNative.so",
-        "runtimes/osx-x64/native/libMatrixFactorizationNative.dylib",
-        "runtimes/win-x64/native/MatrixFactorizationNative.dll",
-        "runtimes/win-x86/native/MatrixFactorizationNative.dll"
-      ]
-    },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "sha512": "z7aeg8oHln2CuNulfhiLYxCVMPEwBl3rzicjvIX+4sUuCwvXw5oXQEtbiU2c0z4qYL5L3Kmx0mMA/+t/SbY67w==",
       "type": "package",
@@ -4640,21 +4370,6 @@
         "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.xml",
         "useSharedDesignerContext.txt",
         "version.txt"
-      ]
-    },
-    "MyMediaLite/3.11.0": {
-      "sha512": "WUQ/9hdio5w9q0MbZVt3+AK5zM45jX4ewwelMGyRSIXhsobV6mENCIHRVqnowIqsBQ6e+w0k0kywyJwHJz0qPA==",
-      "type": "package",
-      "path": "mymedialite/3.11.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "gpl.txt",
-        "lib/net40/MyMediaLite.dll",
-        "lib/net40/MyMediaLite.xml",
-        "license.txt",
-        "mymedialite.3.11.0.nupkg.sha512",
-        "mymedialite.nuspec"
       ]
     },
     "NETStandard.Library/1.6.1": {
@@ -6035,6 +5750,77 @@
         "ref/xamarinwatchos10/_._",
         "system.diagnostics.tracing.4.3.0.nupkg.sha512",
         "system.diagnostics.tracing.nuspec"
+      ]
+    },
+    "System.Dynamic.Runtime/4.0.11": {
+      "sha512": "db34f6LHYM0U0JpE+sOmjar27BnqTVkbLJhgfwMpTdgTigG/Hna3m2MYVwnFzGGKnEJk2UXFuoVTr8WUbU91/A==",
+      "type": "package",
+      "path": "system.dynamic.runtime/4.0.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Dynamic.Runtime.dll",
+        "lib/netstandard1.3/System.Dynamic.Runtime.dll",
+        "lib/portable-net45+win8+wp8+wpa81/_._",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/netcore50/System.Dynamic.Runtime.dll",
+        "ref/netcore50/System.Dynamic.Runtime.xml",
+        "ref/netcore50/de/System.Dynamic.Runtime.xml",
+        "ref/netcore50/es/System.Dynamic.Runtime.xml",
+        "ref/netcore50/fr/System.Dynamic.Runtime.xml",
+        "ref/netcore50/it/System.Dynamic.Runtime.xml",
+        "ref/netcore50/ja/System.Dynamic.Runtime.xml",
+        "ref/netcore50/ko/System.Dynamic.Runtime.xml",
+        "ref/netcore50/ru/System.Dynamic.Runtime.xml",
+        "ref/netcore50/zh-hans/System.Dynamic.Runtime.xml",
+        "ref/netcore50/zh-hant/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.0/System.Dynamic.Runtime.dll",
+        "ref/netstandard1.0/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.0/de/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.0/es/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.0/fr/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.0/it/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.0/ja/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.0/ko/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.0/ru/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.0/zh-hans/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.0/zh-hant/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.3/System.Dynamic.Runtime.dll",
+        "ref/netstandard1.3/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.3/de/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.3/es/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.3/fr/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.3/it/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.3/ja/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.3/ko/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.3/ru/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.3/zh-hans/System.Dynamic.Runtime.xml",
+        "ref/netstandard1.3/zh-hant/System.Dynamic.Runtime.xml",
+        "ref/portable-net45+win8+wp8+wpa81/_._",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "runtimes/aot/lib/netcore50/System.Dynamic.Runtime.dll",
+        "system.dynamic.runtime.4.0.11.nupkg.sha512",
+        "system.dynamic.runtime.nuspec"
       ]
     },
     "System.Globalization/4.3.0": {
@@ -8986,29 +8772,21 @@
         "system.threading.tasks.nuspec"
       ]
     },
-    "System.Threading.Tasks.Dataflow/4.8.0": {
-      "sha512": "PSIdcgbyNv7FZvZ1I9Mqy6XZOwstYYMdZiXuHvIyc0gDyPjEhrrP9OvTGDHp+LAHp1RNSLjPYssyqox9+Kt9Ug==",
+    "System.Threading.Tasks.Dataflow/4.6.0": {
+      "sha512": "2hRjGu2r2jxRZ55wmcHO/WbdX+YAOz9x6FE8xqkHZgPaoFMKQZRe9dk8xTZIas8fRjxRmzawnTEWIrhlM+Un7w==",
       "type": "package",
-      "path": "system.threading.tasks.dataflow/4.8.0",
+      "path": "system.threading.tasks.dataflow/4.6.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/netcoreapp2.0/_._",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/netstandard1.0/System.Threading.Tasks.Dataflow.XML",
         "lib/netstandard1.0/System.Threading.Tasks.Dataflow.dll",
-        "lib/netstandard1.0/System.Threading.Tasks.Dataflow.xml",
+        "lib/netstandard1.1/System.Threading.Tasks.Dataflow.XML",
         "lib/netstandard1.1/System.Threading.Tasks.Dataflow.dll",
-        "lib/netstandard1.1/System.Threading.Tasks.Dataflow.xml",
-        "lib/netstandard2.0/System.Threading.Tasks.Dataflow.dll",
-        "lib/netstandard2.0/System.Threading.Tasks.Dataflow.xml",
-        "lib/portable-net45+win8+wpa81/System.Threading.Tasks.Dataflow.dll",
-        "lib/portable-net45+win8+wpa81/System.Threading.Tasks.Dataflow.xml",
-        "ref/netcoreapp2.0/_._",
-        "system.threading.tasks.dataflow.4.8.0.nupkg.sha512",
-        "system.threading.tasks.dataflow.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "system.threading.tasks.dataflow.4.6.0.nupkg.sha512",
+        "system.threading.tasks.dataflow.nuspec"
       ]
     },
     "System.Threading.Tasks.Extensions/4.5.3": {
@@ -9352,11 +9130,6 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
-    },
-    "wineApiML.Model/1.0.0": {
-      "type": "project",
-      "path": "../wineApiML.Model/wineApiML.Model.csproj",
-      "msbuildProject": "../wineApiML.Model/wineApiML.Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -9367,9 +9140,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.9",
       "Microsoft.EntityFrameworkCore.Sqlite >= 3.1.9",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.9",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4",
-      "MyMediaLite >= 3.11.0",
-      "wineApiML.Model >= 1.0.0"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4"
     ]
   },
   "packageFolders": {
@@ -9403,11 +9174,7 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {
-            "C:\\study\\wine-site\\wineApiML.Model\\wineApiML.Model.csproj": {
-              "projectPath": "C:\\study\\wine-site\\wineApiML.Model\\wineApiML.Model.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -9449,10 +9216,6 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[3.1.4, )"
-          },
-          "MyMediaLite": {
-            "target": "Package",
-            "version": "[3.11.0, )"
           }
         },
         "imports": [
@@ -9476,37 +9239,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'C5 2.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "C5",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'MathNet.Numerics 2.6.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "MathNet.Numerics",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'MyMediaLite 3.11.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "MyMediaLite",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    }
-  ]
+  }
 }

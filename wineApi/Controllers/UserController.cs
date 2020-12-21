@@ -28,7 +28,7 @@ namespace wineApi.Controllers
         [HttpGet("{id}")]
         public async Task<UserModel> GetUser ( int id )
         {
-            Cql cql = new( $"SELECT * FROM user WHERE userid=?", id );
+            Cql cql = new( $"SELECT * FROM {tableName} WHERE userid=?", id );
             return await CassandraConnection.GetRecord<UserModel>( cql )
                 .ConfigureAwait( false );
         }
