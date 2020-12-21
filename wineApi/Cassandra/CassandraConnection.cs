@@ -18,12 +18,26 @@ namespace wineApi.Cassandra
         static CassandraConnection() 
         {
             // Create a cluster instance
-            cluster = Cluster.Builder().AddContactPoint(Environment.GetEnvironmentVariable( "CASSANDRA_ADDRESS" ) ).Build();
+            cluster = Cluster.Builder().AddContactPoint( Environment.GetEnvironmentVariable( "CASSANDRA_ADDRESS" ) ).Build();
+            MappingConfiguration.Global.Define<AllMappings>();
+
             //Create connections to the nodes using a keyspace
-            session = cluster.Connect( Environment.GetEnvironmentVariable( "KEYSPACE_NAME") );
+            session = cluster.Connect( Environment.GetEnvironmentVariable( "KEYSPACE_NAME" ) );
+
+            mapper = new Mapper( session );
+        }
+
+        private static async Task InitConnection()
+        {
+            // Create a cluster instance
+            cluster = Cluster.Builder().AddContactPoint( Environment.GetEnvironmentVariable( "CASSANDRA_ADDRESS" ) ).Build();
+
+            //Create connections to the nodes using a keyspace
+            session = await cluster.ConnectAsync( Environment.GetEnvironmentVariable( "KEYSPACE_NAME" ) )
+                .ConfigureAwait( false );
 
             MappingConfiguration.Global.Define<AllMappings>();
-            mapper = new Mapper(session);
+            mapper = new Mapper( session );
         }
 
         public static CassandraConnection GetInstance()
@@ -45,17 +59,16 @@ namespace wineApi.Cassandra
         }
 
         /// <summary>
-        /// 
+        /// Get record from DB by cql
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="id"></param>
         /// <param name="tableName"></param>
         /// <returns></returns>
-        public static async Task<T> GetRecord<T>(int id, string tableName)
+        public static async Task<T> GetRecord<T> ( Cql cql )
         {
-            Cql cql = new($"SELECT * FROM {tableName} WHERE id=?", id);
-            return await mapper.SingleAsync<T>(cql)
-                .ConfigureAwait(false);
+            return await mapper.SingleAsync<T>( cql )
+                .ConfigureAwait( false );
         }
 
         /// <summary>
@@ -77,12 +90,13 @@ namespace wineApi.Cassandra
         /// <returns></returns>
         public static async Task UpdateRecord<T>(T obj)
         {
-            await mapper.UpdateAsync(obj).ConfigureAwait(false);
+            await mapper.UpdateAsync(obj)
+                .ConfigureAwait(false);
         }
 
-        public static async Task DeleteRecord(int id, string tableName)
+        public static async Task DeleteRecord<T>(Cql cql)
         {
-            await mapper.DeleteAsync($"DE");
+            await mapper.DeleteAsync<T>(cql);
         }
     }
 }

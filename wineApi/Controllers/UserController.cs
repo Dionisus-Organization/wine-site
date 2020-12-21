@@ -12,44 +12,54 @@ using wineApi.Cassandra;
 
 namespace wineApi.Controllers
 {
-    [Route("api/user")]
+    [Route( "user" )]
     [ApiController]
     public class UserController : Controller
     {
         const string tableName = "user";
 
         [HttpGet]
-        public string GetAllUsers()
+        public async Task<IEnumerable<UserModel>> GetAllUsers ()
         {
-            // return await CassandraConnection.GetAllData<UserModel>(tableName)
-            //     .ConfigureAwait(false);
-            return "Hello world";
+            return await CassandraConnection.GetAllData<UserModel>( tableName )
+                .ConfigureAwait( false );
         }
 
         [HttpGet("{id}")]
-        public async Task<UserModel> GetUser(int id)
+        public async Task<UserModel> GetUser ( int id )
         {
-            return await CassandraConnection.GetRecord<UserModel>(id, tableName)
-                .ConfigureAwait(false);
+            Cql cql = new( $"SELECT * FROM user WHERE userid=?", id );
+            return await CassandraConnection.GetRecord<UserModel>( cql )
+                .ConfigureAwait( false );
         }
 
-        [HttpPost("create")]
-        public async Task AddUser(UserModel user)
+        [HttpPost( "create" )]
+        public async Task AddUser ( UserModel user )
         {
-            await CassandraConnection.AddRecord(user)
-                .ConfigureAwait(false);
+            await CassandraConnection.AddRecord( user )
+                .ConfigureAwait( false );
         }
 
-        [HttpPost("update/{id}")]
-        public async Task UpdateUserInfo(UserModel user)
+        [HttpPost( "update/{id}" )]
+        public async Task UpdateUserInfo ( int id, string name, string email )
         {
-            await CassandraConnection.UpdateRecord(user);
+            Cql cql = new( "WHERE userid=?", id );
+
+            var user = await CassandraConnection.GetRecord<UserModel>( cql )
+                .ConfigureAwait( false );
+
+            UserModel newUser = user with { Name = name, Email = email };
+
+            await CassandraConnection.UpdateRecord( newUser )
+                .ConfigureAwait( false );
         }
 
-        [HttpDelete("delete/{id}")]
-        public async Task DeleteUser(int id)
+        [HttpDelete( "delete/{id}" )]
+        public async Task DeleteUser ( int id )
         {
-
+            Cql cql = new( "WHERE userid=?", id );
+            await CassandraConnection.DeleteRecord<UserModel>( cql )
+                .ConfigureAwait( false );
         }
     }
 }

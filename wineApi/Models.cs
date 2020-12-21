@@ -8,13 +8,13 @@ namespace wineApi
     /// <summary>
     /// Запись, описывающая модель пользователя
     /// </summary>
-    public record UserModel (int Id, string Name, string LastName);
+    public record UserModel (int UserId, string Name, string Email, int Password);
 
     /// <summary>
     /// Запись, описывающая модель вина
     /// </summary>
     public record WineModel (
-        int Id, 
+        int Wine_Id, 
         string Wine, 
         string WineSlug, 
         string Appellation,
