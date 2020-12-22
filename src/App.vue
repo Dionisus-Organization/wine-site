@@ -1,18 +1,6 @@
 <template>
     <div id="app">
         <header>
-            <b-navbar toggleable="md" type="light">
-                <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-                <b-navbar-brand to="/">Wines</b-navbar-brand>
-                    <b-collapse is-nav id="nav-collapse">
-                        <b-navbar-nav>
-                            <b-nav-item href="#" @click.prevent="login" v-if="!user">Login</b-nav-item>
-                            <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
-                            <username v-if="user" :username="user.email"></username>
-                            <b-nav-item @click.prevent="openUserPage" v-if="user">User Account</b-nav-item>
-                        </b-navbar-nav>
-                    </b-collapse>
-            </b-navbar>
             <div class="main-header">
                 <div class="site-header-container">
                     <div class="header-line"></div>
@@ -32,10 +20,8 @@
 </template>
 
 <script>
-    import Username from "@/components/Username";
     export default {
         name: 'App',
-        components: { Username },
         data() {
             return {
                 user: null
@@ -48,23 +34,9 @@
             '$route': 'onRouteChange'
         },
         methods: {
-            login() {
-                this.$auth.loginRedirect()
-            },
             async onRouteChange() {
                 await this.refreshUser()
             },
-            async refreshUser() {
-                this.user = await this.$auth.getUser()
-            },
-            async logout() {
-                await this.$auth.logout()
-                await this.refreshUser()
-                this.$router.push('/')
-            },
-            openUserPage() {
-                this.$router.push('/components/UserAccount')
-            }
         }
     }
 </script>
