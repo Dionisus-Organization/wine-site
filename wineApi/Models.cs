@@ -8,34 +8,36 @@ namespace wineApi
     /// <summary>
     /// Запись, описывающая модель пользователя
     /// </summary>
-    public record UserModel (int UserId, string Name, string Email, int Password);
+    public class UserModel
+    {
+        public int UserId { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public int Password { get; set; }
+    }
 
     /// <summary>
     /// Запись, описывающая модель вина
     /// </summary>
-    public record WineModel (
-        int Wine_Id, 
-        string Wine, 
-        string WineSlug, 
-        string Appellation,
-        string AppellationSlug,
-        string Color,
-        string WineType,
-        string Region,
-        string Country,
-        string Classification,
-        string Vintage,
-        string Date,
-        bool IsPrimeurs,
-        float Score,
-        string ConfidenceIndex,
-        int JournalistCount,
-        string Lwin,
-        string Lwin11
-        );
-
-    /// <summary>
-    /// Запись, описывающая модель оценки вин
-    /// </summary>
-    public record RatingModel(int WineId, int UserId, float Rating);
+    public class WineModel
+    {
+        public int Wine_Id { get; set; }
+        public string Wine { get; set; }
+        public string WineSlug { get; set; }
+        public string Appellation { get; set; }
+        public string AppellationSlug { get; set; }
+        public string Color { get; set; }
+        public string WineType { get; set; }
+        public string Region { get; set; }
+        public string Country { get; set; }
+        public string Classification { get; set; }
+        public string Vintage { get; set; }
+        public string Date { get; set; }
+        public bool Is_Primeurs { get; set; }
+        public float Score { get; set; }
+        public string ConfidenceIndex { get; set; }
+        public int JournalistCount { get; set; }
+        public string Lwin { get; set; }
+        public string Lwin11 { get; set; }
+    }
 }

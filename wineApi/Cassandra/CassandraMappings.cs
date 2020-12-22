@@ -29,19 +29,12 @@ namespace wineApi.Cassandra
                 .Column(u => u.Classification, cm => cm.WithName("classification"))
                 .Column(u => u.Vintage, cm => cm.WithName("vintage"))
                 .Column(u => u.Date, cm => cm.WithName("date"))
-                .Column(u => u.IsPrimeurs, cm => cm.WithName("is_primeurs"))
+                .Column(u => u.Is_Primeurs, cm => cm.WithName("is_primeurs"))
                 .Column(u => u.Score, cm => cm.WithName("score"))
                 .Column(u => u.ConfidenceIndex, cm => cm.WithName("confidence_index"))
                 .Column(u => u.JournalistCount, cm => cm.WithName("journalist_count"))
                 .Column(u => u.Lwin, cm => cm.WithName("lwin"))
-                .Column(u => u.Lwin11, cm => cm.WithName("Llin11"));
-
-            For<RatingModel>()
-                .TableName( "Rating" )
-                .PartitionKey( u => u.UserId )
-                .Column( u => u.UserId, cm => cm.WithName( "userid" ) )
-                .Column( u => u.WineId, cm => cm.WithName( "wineid" ) )
-                .Column( u => u.Rating, cm => cm.WithName( "rating" ) );
+                .Column(u => u.Lwin11, cm => cm.WithName("Lwin11"));
         }
     }
 }

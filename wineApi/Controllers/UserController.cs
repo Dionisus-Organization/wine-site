@@ -21,7 +21,7 @@ namespace wineApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<UserModel>> GetAllUsers ()
         {
-            return await CassandraConnection.GetAllData<UserModel>( tableName )
+            return await CassandraConnection.GetInstance().GetAllData<UserModel>( tableName )
                 .ConfigureAwait( false );
         }
 
@@ -29,14 +29,14 @@ namespace wineApi.Controllers
         public async Task<UserModel> GetUser ( int id )
         {
             Cql cql = new( $"SELECT * FROM {tableName} WHERE userid=?", id );
-            return await CassandraConnection.GetRecord<UserModel>( cql )
+            return await CassandraConnection.GetInstance().GetRecord<UserModel>( cql )
                 .ConfigureAwait( false );
         }
 
         [HttpPost( "create" )]
         public async Task AddUser ( UserModel user )
         {
-            await CassandraConnection.AddRecord( user )
+            await CassandraConnection.GetInstance().AddRecord( user )
                 .ConfigureAwait( false );
         }
 
@@ -45,12 +45,17 @@ namespace wineApi.Controllers
         {
             Cql cql = new( "WHERE userid=?", id );
 
-            var user = await CassandraConnection.GetRecord<UserModel>( cql )
+            var user = await CassandraConnection.GetInstance().GetRecord<UserModel>( cql )
                 .ConfigureAwait( false );
 
-            UserModel newUser = user with { Name = name, Email = email };
+            UserModel newUser = new UserModel {
+                Email = email,
+                Name = name,
+                UserId = user.UserId,
+                Password = user.Password
+            };
 
-            await CassandraConnection.UpdateRecord( newUser )
+            await CassandraConnection.GetInstance().UpdateRecord( newUser )
                 .ConfigureAwait( false );
         }
 
@@ -58,7 +63,7 @@ namespace wineApi.Controllers
         public async Task DeleteUser ( int id )
         {
             Cql cql = new( "WHERE userid=?", id );
-            await CassandraConnection.DeleteRecord<UserModel>( cql )
+            await CassandraConnection.GetInstance().DeleteRecord<UserModel>( cql )
                 .ConfigureAwait( false );
         }
     }
