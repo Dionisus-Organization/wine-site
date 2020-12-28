@@ -31,10 +31,13 @@
                     </label>
                 </ValidationProvider>
                 <button type="submit" :disabled="isLoading">Show</button>
+                <RouterLink :to="{name: 'recommend'}">
+                    <button type="button" v-on:click="recommend">Recommend</button>
+                </RouterLink>
             </form>
         </div>
         <div class="container" v-if="!isLoading">
-            <WineRatesTable :items="items"/>
+            <WineRatesTable :items="items" @toParent="getCheckedWines"/>
             <nav>
                 <paginate v-model="winePage"
                         :page-count="globalItemsCount"
@@ -78,12 +81,12 @@
                 winePage: 1,
                 isLoading: true,
                 wines: [],
-                itemsCount: 20
+                itemsCount: 20,
+                checkedWines: []
             };
         },
         computed: {
             items() {
-                // return this.$store.getters.getWines
                 return this.wines;
             },
             globalItemsCount() {
@@ -120,13 +123,16 @@
                 api.getAll().then(() => {
                     this.isLoading = false;
                 })
-                // this.$store.dispatch('getWines', queryParams).then(() => {
-                //     this.isLoading = false;
-                // })
             },
             clickCallback(pageNum) {
                 this.winePage = pageNum;
                 this.submitForm(this.winePage);
+            },
+            recommend() {
+                localStorage.setItem("wines", JSON.stringify(this.checkedWines));
+            },
+            getCheckedWines(value) {
+                this.checkedWines = value;
             }
         }
     }
@@ -197,5 +203,9 @@
             margin: 0 5px;
             display: list-item;
         }
+    }
+
+    button {
+        margin: 0px 5px;
     }
 </style>

@@ -15,29 +15,13 @@
                 </div>
             </div>
         </header>
-        <router-view :user="user"></router-view>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'App',
-        data() {
-            return {
-                user: null
-            }
-        },
-        async created() {
-            await this.refreshUser()
-        },
-        watch: {
-            '$route': 'onRouteChange'
-        },
-        methods: {
-            async onRouteChange() {
-                await this.refreshUser()
-            },
-        }
+        name: 'App'
     }
 </script>
 
