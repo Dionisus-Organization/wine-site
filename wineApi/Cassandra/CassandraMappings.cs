@@ -17,6 +17,7 @@ namespace wineApi.Cassandra
             For<WineModel>()
                 .TableName("wine")
                 .PartitionKey(u => u.Wine_Id)
+                .Column(u => u.Id, cm => cm.WithName("id"))
                 .Column(u => u.Wine_Id, cm => cm.WithName("wine_id"))
                 .Column(u => u.Wine, cm => cm.WithName("wine"))
                 .Column(u => u.WineSlug, cm => cm.WithName("wine_slug"))

@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 using Cassandra;
 using Cassandra.Mapping;
+using Microsoft.AspNetCore.Http;
+using Microsoft.CSharp.RuntimeBinder;
+using ISession = Cassandra.ISession;
 
 namespace wineApi.Cassandra
 {
@@ -17,14 +20,6 @@ namespace wineApi.Cassandra
 
         static CassandraConnection() 
         {
-            //// Create a cluster instance
-            //cluster = Cluster.Builder().AddContactPoint( Environment.GetEnvironmentVariable( "CASSANDRA_ADDRESS" ) ).Build();
-            //MappingConfiguration.Global.Define<AllMappings>();
-
-            ////Create connections to the nodes using a keyspace
-            //session = cluster.Connect( Environment.GetEnvironmentVariable( "KEYSPACE_NAME" ) );
-
-            //mapper = new Mapper( session );
             InitConnection();
         }
 
@@ -54,12 +49,9 @@ namespace wineApi.Cassandra
         /// <typeparam name="T">Return data type</typeparam>
         /// <param name="tableName">Name of table</param>
         /// <returns></returns>
-        public async Task<IEnumerable<T>> GetAllData<T>(string tableName)
+        public async Task<IEnumerable<T>> GetPagedData<T>(Cql cql)
         {
-            Cql cql = new($"SELECT * FROM {tableName}");
-            IEnumerable<T> result = await mapper.FetchAsync<T>(cql)
-                .ConfigureAwait(false);
-
+            var result = await mapper.FetchAsync<T>( cql );
             return result;
         }
 

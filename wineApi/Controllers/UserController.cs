@@ -19,10 +19,11 @@ namespace wineApi.Controllers
         const string tableName = "user";
 
         [HttpGet]
-        public async Task<IEnumerable<UserModel>> GetAllUsers ()
+        public async Task GetAllUsers ()
         {
-            return await CassandraConnection.GetInstance().GetAllData<UserModel>( tableName )
-                .ConfigureAwait( false );
+            //return await CassandraConnection.GetInstance().GetAllData<UserModel>( tableName )
+            //    .ConfigureAwait( false );
+
         }
 
         [HttpGet("{id}")]

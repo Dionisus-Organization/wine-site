@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +27,17 @@ namespace wineApi
                 .AllowAnyHeader()));
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            }
+                
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,15 +49,10 @@ namespace wineApi
             }
 
             app.UseCors("AllowCors");
-            app.UseMvc();
+            app.UseSession();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
-            app.UseEndpoints( endpoints =>
-            {
-                 endpoints.MapControllers();
-            });
         }
     }
 }

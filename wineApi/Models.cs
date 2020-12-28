@@ -21,6 +21,7 @@ namespace wineApi
     /// </summary>
     public class WineModel
     {
+        public int Id { get; set; }
         public int Wine_Id { get; set; }
         public string Wine { get; set; }
         public string WineSlug { get; set; }
