@@ -2,9 +2,10 @@ CREATE KEYSPACE IF NOT EXISTS wine_keyspace
 WITH REPLICATION = {'class': 'SimpleStrategy', 'replication_factor': 1}
 AND durable_writes = true;
 
-create table wine
+create table wine_keyspace.wine
 (
-    wine_id          int primary key,
+    id int,
+    wine_id          int,
     appellation      text,
     appellation_slug text,
     classification   text,
@@ -21,8 +22,8 @@ create table wine
     vintage          text,
     wine             text,
     wine_slug        text,
-    wine_type        text
-)
+    wine_type        text,
+ primary key ((wine_id), id))
 with comment = 'Вина';
 
 create table user
