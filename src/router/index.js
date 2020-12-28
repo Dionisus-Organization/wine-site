@@ -13,9 +13,15 @@ let router = new Router({
             props: true
         },
         {
-            path: '/card/:wine_id/:vintage',
+            path: '/card/:wine_Id/:vintage',
             name: 'oneCard',
             component: () => import('../dashboards/WineCard.vue'),
+            props: true
+        },
+        {
+            path: '/',
+            name: 'recommend',
+            component: () => import('../components/Recommendation.vue'),
             props: true
         },
     ]

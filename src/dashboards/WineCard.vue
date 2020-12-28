@@ -58,26 +58,18 @@
     import api from '@/httpService';
     export default {
         name: "WineCard",
+        props: ['wine_Id'],
         data() {
             return {
                 isLoading: true,
-                wines: []
+                item: []
             };
         },
-        computed: {
-            item() {
-                return this.wines[0];
-            }
-        },
         created: async function () {
-            await api.getAll().then((data) => {
+            await api.getById(this.wine_Id).then((data) => {
                 this.isLoading = false;
-                this.wines = data;
-                console.log("WinES", this.wines)
+                this.item = data;
             })
-            // await this.$store.dispatch('getWines', this.$route.params).then(() => {
-            //     this.isLoading = false;
-            // })
         },
     }
 </script>
