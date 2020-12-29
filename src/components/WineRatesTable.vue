@@ -13,8 +13,8 @@
                 </tr>
             </thead>
             <tbody>
-                <router-link v-for="item in items" :key="item.wine_Id" tag="tr"
-                        :to="{name: 'oneCard', params: {wine_Id: item.wine_Id, vintage: item.vintage}}">
+                <router-link v-for="item in items" :key="item.id" tag="tr"
+                        :to="{name: 'oneCard', params: {id: item.id, vintage: item.vintage}}">
                     <td>{{ item.wine }}</td>
                     <td><span class="wine-color-circle"><em :class="[item.color, 'color']"></em></span></td>
                     <td>{{item.wineType}}</td>

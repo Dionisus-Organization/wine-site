@@ -58,7 +58,7 @@
     import api from '@/httpService';
     export default {
         name: "WineCard",
-        props: ['wine_Id'],
+        props: ['id'],
         data() {
             return {
                 isLoading: true,
@@ -66,7 +66,7 @@
             };
         },
         created: async function () {
-            await api.getById(this.wine_Id).then((data) => {
+            await api.getById(this.id).then((data) => {
                 this.isLoading = false;
                 this.item = data;
             })
