@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Cache;
+using System.Reflection.Metadata;
+using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
 using Cassandra;
+using Cassandra.DataStax.Graph;
 using Cassandra.Mapping;
 
 using Microsoft.AspNetCore.Http;
@@ -82,20 +85,36 @@ namespace wineApi.Controllers
             Recommenation.CalculateWineColor(retrievedData, out double red, out double white, out double pink);
             Recommenation.CalculateWineCountry( retrievedData, out string country );
 
-            Cql redWineCql = new($"select * from {_tableName} where color='Red' and country=? limit ? allow filtering", country, (int)red);
-            Cql whiteWineCql = new($"select * from {_tableName} where color='White' and country=? limit ? allow filtering", country, (int)white);
-            Cql pinkWineCql = new($"select * from {_tableName} where color='Pink' and country=? limit ? allow filtering", country, (int)pink);
+            Cql redWineCql = GenerateCql("Red", country, (int) red);
+            Cql whiteWineCql = GenerateCql("White", country, (int) white);
+            Cql pinkWineCql = GenerateCql("Pink", country, (int) pink);
 
-            var redWineResult = await CassandraConnection.GetInstance()
-                .GetByRequestData<WineModel>(redWineCql);
-            var whiteWineResult = await CassandraConnection.GetInstance()
-                .GetByRequestData<WineModel>(whiteWineCql);
-            var pinkWineResult = await CassandraConnection.GetInstance().GetByRequestData<WineModel>(pinkWineCql);
+            var redWineResult = redWineCql is not null ? await GetWineData(redWineCql) : new List<WineModel>();
+            var whiteWineResult = whiteWineCql is not null ? await GetWineData(whiteWineCql) : new List<WineModel>();
+            var pinkWineResult = pinkWineCql is not null ? await GetWineData(pinkWineCql) : new List<WineModel>();
             
             redWineResult.AddRange(whiteWineResult);
             redWineResult.AddRange(pinkWineResult);
 
             return redWineResult;
+        }
+
+        private Cql GenerateCql(string color, string country, int limit = 0)
+        {
+            if (limit == 0)
+                return null;
+            
+            StringBuilder builder = new ($"select * from {_tableName} where color=? and country=? ");
+            builder.Append($"limit {limit} ");
+            builder.Append("allow filtering");
+
+            return new Cql(builder.ToString(), color, country);
+        }
+
+        private async Task<List<WineModel>> GetWineData(Cql cql)
+        {
+            return await CassandraConnection.GetInstance()
+                .GetByRequestData<WineModel>(cql);
         }
     }
 
