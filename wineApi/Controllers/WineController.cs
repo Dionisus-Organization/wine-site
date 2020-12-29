@@ -9,6 +9,7 @@ using Cassandra.Mapping;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.Configuration.UserSecrets;
 using wineApi.Cassandra;
 
@@ -33,7 +34,7 @@ namespace wineApi.Controllers
 
             Cql cql = new( $"SELECT * FROM {_tableName} where id >= ? and id < ? allow filtering", startIndex, startIndex + _pageSize );
 
-            var temp = await CassandraConnection.GetInstance().GetPagedData<WineModel>( cql );
+            var temp = await CassandraConnection.GetInstance().GetByRequestData<WineModel>( cql );
             List<WineModel> result = temp.ToList().OrderBy( wine => wine.Id ).ToList();
 
             return result;
@@ -61,8 +62,21 @@ namespace wineApi.Controllers
         public async Task<IEnumerable<WineModel>> GetRecommendations([FromBody]SelectedWines wines)
         {
             var retrievedData = await Recommenation.GetSelectedData(wines.Wines);
+            Recommenation.CalculateWineColor(retrievedData, out double red, out double white, out double pink);
+            Recommenation.CalculateWineCountry( retrievedData, out string country );
+
+            Cql redWineCql = new($"select * from {_tableName} where color='Red' and country=? limit ? allow filtering", country, (int)red);
+            Cql whiteWineCql = new($"select * from {_tableName} where color='White' and country=? limit ? allow filtering", country, (int)white);
+            Cql pinkWineCql = new($"select * from {_tableName} where color='Pink' and country=? limit ? allow filtering", country, (int)pink);
+
+            var redWineResult = await CassandraConnection.GetInstance().GetByRequestData<WineModel>(redWineCql);
+            var whiteWineResult = await CassandraConnection.GetInstance().GetByRequestData<WineModel>(whiteWineCql);
+            var pinkWineResult = await CassandraConnection.GetInstance().GetByRequestData<WineModel>(pinkWineCql);
             
-            return new List<WineModel>();
+            redWineResult.AddRange(whiteWineResult);
+            redWineResult.AddRange(pinkWineResult);
+
+            return redWineResult;
         }
     }
 

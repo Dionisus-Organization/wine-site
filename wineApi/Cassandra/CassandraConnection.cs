@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.Xml.XPath;
 using Cassandra;
 using Cassandra.Mapping;
 using Microsoft.AspNetCore.Http;
@@ -49,10 +49,11 @@ namespace wineApi.Cassandra
         /// <typeparam name="T">Return data type</typeparam>
         /// <param name="tableName">Name of table</param>
         /// <returns></returns>
-        public async Task<IEnumerable<T>> GetPagedData<T>(Cql cql)
+        public async Task<List<T>> GetByRequestData<T>(Cql cql)
         {
-            var result = await mapper.FetchAsync<T>( cql );
-            return result;
+            var result = await mapper.FetchAsync<T>(cql)
+                .ConfigureAwait(false);
+            return result.ToList();
         }
 
         /// <summary>
