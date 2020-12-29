@@ -1,28 +1,30 @@
 // import Vue from 'vue'
 import axios from 'axios'
 
+const baseURL = 'http://localhost:5000/wine';
+
 const client = axios.create({
-    baseURL: 'http://localhost:5000/wine',
+    baseURL: baseURL,
     json: true
 })
 
 export default {
     async execute(method, resource, data) {
-        // const accessToken = await Vue.prototype.$auth.getAccessToken()
-        // console.log("token", accessToken);
         return client({
             method,
             url: resource,
             data,
             headers: {
-                // Authorization: `Bearer ${accessToken}`
             }
         }).then(req => {
             return req.data
         })
     },
-    getAll() {
-        return this.execute('get', '/')
+    getAll(page) {
+        return axios.get(`${baseURL}?page=${page}`)
+        .then(req => {
+            return req.data
+        })
     },
     getById(id) {
         return this.execute('get', `/${id}`)
@@ -36,8 +38,4 @@ export default {
     update(id, data) {
         return this.execute('put', `/${id}`, data)
     },
-    // getters: {
-    //     getWines: this.getAll().then((data) => { console.log("my", data)}),
-    //     // getPages: (state) => Math.ceil(state.wineCount / API_URLS.LIMIT),
-    // }
 }

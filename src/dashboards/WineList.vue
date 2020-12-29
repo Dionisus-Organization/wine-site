@@ -95,7 +95,7 @@
         },
         created: async function () {
             // const { color } = this.form;
-            await api.getAll().then((data) => {
+            await api.getAll(this.winePage).then((data) => {
                 this.isLoading = false;
                 this.wines = data;
             })
