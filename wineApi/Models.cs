@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace wineApi
 {
     /// <summary>
-    /// Запись, описывающая модель пользователя
+    /// Model of user
     /// </summary>
     public class UserModel
     {
@@ -17,7 +17,7 @@ namespace wineApi
     }
 
     /// <summary>
-    /// Запись, описывающая модель вина
+    /// Model of wine
     /// </summary>
     public class WineModel
     {

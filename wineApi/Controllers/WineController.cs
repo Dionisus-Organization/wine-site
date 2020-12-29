@@ -86,8 +86,10 @@ namespace wineApi.Controllers
             Cql whiteWineCql = new($"select * from {_tableName} where color='White' and country=? limit ? allow filtering", country, (int)white);
             Cql pinkWineCql = new($"select * from {_tableName} where color='Pink' and country=? limit ? allow filtering", country, (int)pink);
 
-            var redWineResult = await CassandraConnection.GetInstance().GetByRequestData<WineModel>(redWineCql);
-            var whiteWineResult = await CassandraConnection.GetInstance().GetByRequestData<WineModel>(whiteWineCql);
+            var redWineResult = await CassandraConnection.GetInstance()
+                .GetByRequestData<WineModel>(redWineCql);
+            var whiteWineResult = await CassandraConnection.GetInstance()
+                .GetByRequestData<WineModel>(whiteWineCql);
             var pinkWineResult = await CassandraConnection.GetInstance().GetByRequestData<WineModel>(pinkWineCql);
             
             redWineResult.AddRange(whiteWineResult);
