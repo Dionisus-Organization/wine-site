@@ -13,7 +13,7 @@ let router = new Router({
             props: true
         },
         {
-            path: '/card/:wine_Id/:vintage',
+            path: '/card/:id/:vintage',
             name: 'oneCard',
             component: () => import('../dashboards/WineCard.vue'),
             props: true

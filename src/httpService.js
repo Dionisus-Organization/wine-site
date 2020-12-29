@@ -29,6 +29,9 @@ export default {
     getById(id) {
         return this.execute('get', `/${id}`)
     },
+    getCount() {
+        return this.execute('get', '/number-of-records')
+    },
     // getByColor(color) {
     //     return this.execute('get', `/${color}`)
     // },

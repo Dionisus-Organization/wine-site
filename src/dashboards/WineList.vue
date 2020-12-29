@@ -82,16 +82,15 @@
                 isLoading: true,
                 wines: [],
                 itemsCount: 20,
-                checkedWines: []
+                checkedWines: [],
+                globalItemsCount: 0,
+                pageSize: 20
             };
         },
         computed: {
             items() {
                 return this.wines;
             },
-            globalItemsCount() {
-                return this.wines.length / this.itemsCount;
-            }
         },
         created: async function () {
             // const { color } = this.form;
@@ -99,6 +98,7 @@
                 this.isLoading = false;
                 this.wines = data;
             })
+            await api.getCount().then((data) => this.globalItemsCount = Math.floor(data / this.pageSize))
             // await this.$store.dispatch('getWines', {color}).then(() => {
             //     this.isLoading = false;
             // })
@@ -126,7 +126,10 @@
             },
             clickCallback(pageNum) {
                 this.winePage = pageNum;
-                this.submitForm(this.winePage);
+                api.getAll(pageNum).then((data) => {
+                    this.isLoading = false;
+                    this.wines = data;
+                })
             },
             recommend() {
                 localStorage.setItem("wines", JSON.stringify(this.checkedWines));
