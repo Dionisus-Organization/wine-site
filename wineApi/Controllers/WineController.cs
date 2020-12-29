@@ -73,43 +73,39 @@ namespace wineApi.Controllers
             return await CassandraConnection.GetInstance().GetNumberOfRecords<WineModel>(cql);
         }
 
+        [HttpGet("filter")]
+        public async Task<IEnumerable<WineModel>> GetFilteredWines(string color, string wine_type, string country, string vintage)
+        {
+            Cql cql = new(WineControllerHelper.GenerateFilterCql(_tableName, color, wine_type, country, vintage));
+
+            return await CassandraConnection.GetInstance().GetByRequestData<WineModel>(cql);
+        }
+
         /// <summary>
         /// Get wines recommendation for user by selected items
         /// </summary>
         /// <param name="wines"></param>
         /// <returns></returns>
         [HttpGet("recommendation")]
-        public async Task<IEnumerable<WineModel>> GetRecommendations([FromBody]SelectedWines wines)
+        public async Task<IEnumerable<WineModel>> GetRecommendations([FromBody] SelectedWines wines)
         {
             // Тут надо придумать наверно какой то псевдо рандом, потмоу что пока что выдаются фиксированные значения
             var retrievedData = await Recommenation.GetSelectedData(wines.Wines);
             Recommenation.CalculateWineColor(retrievedData, out double red, out double white, out double pink);
-            Recommenation.CalculateWineCountry( retrievedData, out string country );
+            Recommenation.CalculateWineCountry(retrievedData, out string country);
 
-            Cql redWineCql = GenerateCql("Red", country, (int) red);
-            Cql whiteWineCql = GenerateCql("White", country, (int) white);
-            Cql pinkWineCql = GenerateCql("Pink", country, (int) pink);
+            var redWineCql = WineControllerHelper.GenerateCql(_tableName, "Red", country, (int) red);
+            var whiteWineCql = WineControllerHelper.GenerateCql(_tableName, "White", country, (int) white);
+            var pinkWineCql = WineControllerHelper.GenerateCql(_tableName, "Pink", country, (int) pink);
 
             var redWineResult = redWineCql is not null ? await GetWineData(redWineCql) : new List<WineModel>();
             var whiteWineResult = whiteWineCql is not null ? await GetWineData(whiteWineCql) : new List<WineModel>();
             var pinkWineResult = pinkWineCql is not null ? await GetWineData(pinkWineCql) : new List<WineModel>();
-            
+
             redWineResult.AddRange(whiteWineResult);
             redWineResult.AddRange(pinkWineResult);
 
             return redWineResult;
-        }
-
-        private Cql GenerateCql(string color, string country, int limit = 0)
-        {
-            if (limit == 0)
-                return null;
-            
-            StringBuilder builder = new ($"select * from {_tableName} where color=? and country=? ");
-            builder.Append($"limit {limit} ");
-            builder.Append("allow filtering");
-
-            return new Cql(builder.ToString(), color, country);
         }
 
         private async Task<List<WineModel>> GetWineData(Cql cql)
