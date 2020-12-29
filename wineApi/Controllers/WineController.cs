@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Cache;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 using Cassandra;
 using Cassandra.Mapping;
 
@@ -20,6 +21,11 @@ namespace wineApi.Controllers
         private const string _tableName = "wine";
         private const int _pageSize = 20;
 
+        /// <summary>
+        /// Handle get request with paginating
+        /// </summary>
+        /// <param name="page">Selected page</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IEnumerable<WineModel>> GetWines([FromQuery]int page)
         {
@@ -33,21 +39,38 @@ namespace wineApi.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Get specifed wine
+        /// </summary>
+        /// <param name="id">Id of wine</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<WineModel>> GetWine(int id)
         {
-            Cql cql = new($"WHERE wine_id=?", id);
+            Cql cql = new($"WHERE id=? allow filtering", id);
             return await CassandraConnection.GetInstance().GetRecord<WineModel>(cql)
                 .ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="wines"></param>
+        /// <returns></returns>
+        [HttpGet("recommendation")]
+        public async Task<IEnumerable<WineModel>> GetRecommendations([FromBody]SelectedWines wines)
+        {
+            var retrievedData = await Recommenation.GetSelectedData(wines.Wines);
+            
+            return new List<WineModel>();
+        }
     }
 
-    public static class ListExtansion
+    /// <summary>
+    /// 
+    /// </summary>
+    public class SelectedWines
     {
-        public static void CopyToList<T>(this List<T> source, List<T> destination, int startIndex, int count)
-        {
-            for ( int i = startIndex; i < count; i++ )
-                destination.Add( source[ i ] );
-        }
+        public int[] Wines { get; set; }
     }
 }
