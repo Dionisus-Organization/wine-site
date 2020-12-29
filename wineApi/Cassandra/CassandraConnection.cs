@@ -96,5 +96,11 @@ namespace wineApi.Cassandra
         {
             await mapper.DeleteAsync<T>(cql);
         }
+
+        public async Task<int> GetNumberOfRecords<T>(Cql cql)
+        {
+            var result = await mapper.FetchAsync<T>(cql);
+            return result.Count();
+        }
     }
 }

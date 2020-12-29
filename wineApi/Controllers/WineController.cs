@@ -54,6 +54,17 @@ namespace wineApi.Controllers
         }
 
         /// <summary>
+        /// Get number of records in wine table
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("number-of-records")]
+        public async Task<int> GetNumberOfWines()
+        {
+            Cql cql = new($"select id from {_tableName}");
+            return await CassandraConnection.GetInstance().GetNumberOfRecords<WineModel>(cql);
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="wines"></param>
