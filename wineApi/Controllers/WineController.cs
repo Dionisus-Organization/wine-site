@@ -19,7 +19,13 @@ namespace wineApi.Controllers
     [ApiController]
     public class WineController : ControllerBase
     {
+        /// <summary>
+        /// Name of table in wine_keypspace
+        /// </summary>
         private const string _tableName = "wine";
+        /// <summary>
+        /// Number of elements to display on a page
+        /// </summary>
         private const int _pageSize = 20;
 
         /// <summary>
@@ -65,7 +71,7 @@ namespace wineApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get wines recommendation for user by selected items
         /// </summary>
         /// <param name="wines"></param>
         /// <returns></returns>
@@ -92,7 +98,7 @@ namespace wineApi.Controllers
     }
 
     /// <summary>
-    /// 
+    /// Represent an object, that retrieve from request body
     /// </summary>
     public class SelectedWines
     {

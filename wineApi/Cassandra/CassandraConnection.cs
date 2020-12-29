@@ -11,6 +11,9 @@ using ISession = Cassandra.ISession;
 
 namespace wineApi.Cassandra
 {
+    /// <summary>
+    /// Class that hold connection with cassandra
+    /// </summary>
     public class CassandraConnection
     {
         private static CassandraConnection instance = null;
@@ -36,19 +39,22 @@ namespace wineApi.Cassandra
             mapper = new Mapper( session );
         }
 
+        /// <summary>
+        /// Returns cassandra`s object with initialized connection with cassandra.
+        /// Represent a singleton pattern
+        /// </summary>
+        /// <returns>Instance of CassandraConnection</returns>
         public static CassandraConnection GetInstance()
         {
-            if ( instance == null )
-                instance = new CassandraConnection();
-            return instance;
+            return instance ?? (instance = new CassandraConnection());
         }
 
         /// <summary>
         /// Get all data from specified table
         /// </summary>
         /// <typeparam name="T">Return data type</typeparam>
-        /// <param name="tableName">Name of table</param>
-        /// <returns></returns>
+        /// <param name="cql">Cql statement</param>
+        /// <returns>List of records</returns>
         public async Task<List<T>> GetByRequestData<T>(Cql cql)
         {
             var result = await mapper.FetchAsync<T>(cql)
@@ -57,12 +63,11 @@ namespace wineApi.Cassandra
         }
 
         /// <summary>
-        /// Get record from DB by cql
+        /// Return a record from table
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="id"></param>
-        /// <param name="tableName"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">Type of model</typeparam>
+        /// <param name="cql">CQL statement for request</param>
+        /// <returns>A record of specified type</returns>
         public async Task<T> GetRecord<T> ( Cql cql )
         {
             return await mapper.SingleAsync<T>( cql )
@@ -70,11 +75,10 @@ namespace wineApi.Cassandra
         }
 
         /// <summary>
-        /// 
+        /// Add record to DB
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">Type of model</typeparam>
+        /// <param name="obj">Instance of model</param>
         public async Task AddRecord<T>(T obj)
         {
             await mapper.InsertAsync(obj)
@@ -82,21 +86,31 @@ namespace wineApi.Cassandra
         }
 
         /// <summary>
-        /// /
+        /// Update record in table
         /// </summary>
-        /// <param name="cql"></param>
-        /// <returns></returns>
+        /// <param name="obj">Instance of model</param>
         public async Task UpdateRecord<T>(T obj)
         {
             await mapper.UpdateAsync(obj)
                 .ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// Delete record from table
+        /// </summary>
+        /// <param name="cql"></param>
+        /// <typeparam name="T"></typeparam>
         public async Task DeleteRecord<T>(Cql cql)
         {
             await mapper.DeleteAsync<T>(cql);
         }
 
+        /// <summary>
+        /// Return a number of record in table
+        /// </summary>
+        /// <param name="cql"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public async Task<int> GetNumberOfRecords<T>(Cql cql)
         {
             var result = await mapper.FetchAsync<T>(cql);
