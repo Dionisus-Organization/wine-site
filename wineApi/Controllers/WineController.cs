@@ -81,6 +81,7 @@ namespace wineApi.Controllers
         [HttpGet("recommendation")]
         public async Task<IEnumerable<WineModel>> GetRecommendations([FromBody]SelectedWines wines)
         {
+            // Тут надо придумать наверно какой то псевдо рандом, потмоу что пока что выдаются фиксированные значения
             var retrievedData = await Recommenation.GetSelectedData(wines.Wines);
             Recommenation.CalculateWineColor(retrievedData, out double red, out double white, out double pink);
             Recommenation.CalculateWineCountry( retrievedData, out string country );
