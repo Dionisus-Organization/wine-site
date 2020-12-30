@@ -405,3 +405,12 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# docfx files
+_site/
+api/
+docfx.json
+index.md
+log.txt
+toc.yml
+intro.md
