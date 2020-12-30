@@ -74,11 +74,23 @@ namespace wineApi.Controllers
         }
 
         [HttpGet("filter")]
-        public async Task<IEnumerable<WineModel>> GetFilteredWines(string color, string wine_type, string country, string vintage)
+        public async Task<IEnumerable<WineModel>> GetFilteredWinesByPage([FromBody]FilterParams filter, int page)
         {
-            Cql cql = new(WineControllerHelper.GenerateFilterCql(_tableName, color, wine_type, country, vintage));
+            Cql cql = new(WineControllerHelper.GenerateFilterCql(_tableName, filter.Color, filter.Wine_type, filter.Country, filter.Vintage));
 
-            return await CassandraConnection.GetInstance().GetByRequestData<WineModel>(cql);
+            var tempList = ( await CassandraConnection.GetInstance().GetByRequestData<WineModel> ( cql ) ).ToList();
+            List<WineModel> sortedResult = tempList.OrderBy ( a => a.Id ).ToList();
+
+            int startIndex = _pageSize * ( page - 1 );
+            int endIndex = startIndex + _pageSize;
+            
+            var pagedList = new List<WineModel>();
+            int loopEndIndex = endIndex > tempList.Count ? tempList.Count : endIndex;
+            
+            for ( int i = startIndex; i < loopEndIndex; i++ )
+                pagedList.Add ( sortedResult[i] );
+
+            return pagedList;
         }
 
         /// <summary>
@@ -120,5 +132,14 @@ namespace wineApi.Controllers
     public class SelectedWines
     {
         public int[] Wines { get; set; }
+    }
+
+    public class FilterParams
+    {
+        public string Color { get; set; }
+        public string Wine_type { get; set; }
+        public string Country { get; set; }
+        public string Vintage { get; set; }
+
     }
 }
