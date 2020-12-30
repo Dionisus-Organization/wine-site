@@ -203,6 +203,7 @@
         list-style-type: none;
         display: flex;
         justify-content: center;
+        width: 100%;
         li.page-item.active {
             a.page-link {
                 background-color: $primaryDarkColor;
