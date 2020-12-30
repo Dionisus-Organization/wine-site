@@ -94,18 +94,18 @@ namespace wineApi.Controllers
             Recommenation.CalculateWineColor(retrievedData, out double red, out double white, out double pink);
             Recommenation.CalculateWineCountry(retrievedData, out string country);
 
-            var redWineCql = WineControllerHelper.GenerateCql(_tableName, "Red", country, (int) red);
-            var whiteWineCql = WineControllerHelper.GenerateCql(_tableName, "White", country, (int) white);
-            var pinkWineCql = WineControllerHelper.GenerateCql(_tableName, "Pink", country, (int) pink);
+            var redWineCql = WineControllerHelper.GenerateCql(_tableName, "Red", country);
+            var whiteWineCql = WineControllerHelper.GenerateCql(_tableName, "White", country);
+            var pinkWineCql = WineControllerHelper.GenerateCql(_tableName, "Pink", country);
 
             var redWineResult = redWineCql is not null ? 
-                await WineControllerHelper.GetWineData(redWineCql) : new List<WineModel>();
+                await WineControllerHelper.GetWineData(redWineCql, (int) red) : new List<WineModel>();
             
             var whiteWineResult = whiteWineCql is not null ? 
-                await WineControllerHelper.GetWineData(whiteWineCql) : new List<WineModel>();
+                await WineControllerHelper.GetWineData(whiteWineCql, (int) white) : new List<WineModel>();
             
             var pinkWineResult = pinkWineCql is not null ? 
-                await WineControllerHelper.GetWineData(pinkWineCql) : new List<WineModel>();
+                await WineControllerHelper.GetWineData(pinkWineCql, (int) pink) : new List<WineModel>();
 
             redWineResult.AddRange(whiteWineResult);
             redWineResult.AddRange(pinkWineResult);

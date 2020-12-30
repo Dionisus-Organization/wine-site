@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cassandra.Mapping;
@@ -8,16 +10,25 @@ namespace wineApi.Controllers
 {
     public static class WineControllerHelper
     {
-        public static Cql GenerateCql(string tableName, string color, string country, int limit = 0)
+        public static Cql GenerateCql(string tableName, string color, string country)
         {
-            if (limit == 0)
-                return null;
-            
             StringBuilder builder = new ($"select * from {tableName} where color=? and country=? ");
-            builder.Append($"limit {limit} ");
             builder.Append("allow filtering");
 
             return new Cql(builder.ToString(), color, country);
+        }
+
+        private static List<WineModel> CopyElements(this List<WineModel> destination, List<WineModel> source, int number)
+        {
+            var gordon = new Random();
+            
+            for (var i = 0; i < number; i++)
+            {
+                var randIndex = gordon.Next(source.Count);
+                destination.Add(source[randIndex]);
+            }
+
+            return destination;
         }
 
         /// <summary>
@@ -65,10 +76,12 @@ namespace wineApi.Controllers
         /// </summary>
         /// <param name="cql">Cql request</param>
         /// <returns>List of wines</returns>
-        public static async Task<List<WineModel>> GetWineData(Cql cql)
+        public static async Task<List<WineModel>> GetWineData(Cql cql, int limit)
         {
-            return await CassandraConnection.GetInstance()
+            var result = await CassandraConnection.GetInstance()
                 .GetByRequestData<WineModel>(cql);
+
+            return new List<WineModel>().CopyElements(result, limit);
         }
 
         public static void GetDataForRecommendation()
