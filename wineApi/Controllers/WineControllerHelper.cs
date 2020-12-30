@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cassandra.Mapping;
@@ -82,11 +81,6 @@ namespace wineApi.Controllers
                 .GetByRequestData<WineModel>(cql);
 
             return new List<WineModel>().CopyElements(result, limit);
-        }
-
-        public static void GetDataForRecommendation()
-        {
-            
         }
     }
 }
