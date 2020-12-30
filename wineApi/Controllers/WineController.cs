@@ -86,7 +86,7 @@ namespace wineApi.Controllers
         /// </summary>
         /// <param name="wines"></param>
         /// <returns></returns>
-        [HttpGet("recommendation")]
+        [HttpPost("recommendation")]
         public async Task<IEnumerable<WineModel>> GetRecommendations([FromBody] SelectedWines wines)
         {
             // Тут надо придумать наверно какой то псевдо рандом, потмоу что пока что выдаются фиксированные значения

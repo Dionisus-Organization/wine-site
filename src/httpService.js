@@ -21,7 +21,9 @@ export default {
         })
     },
     getAll(page) {
-        return axios.get(`${baseURL}?page=${page}`)
+        return axios.get(baseURL, {
+            params: { page }
+        })
         .then(req => {
             return req.data
         })
@@ -32,9 +34,23 @@ export default {
     getCount() {
         return this.execute('get', '/number-of-records')
     },
-    // getByColor(color) {
-    //     return this.execute('get', `/${color}`)
-    // },
+    getRecommend(wines_id) {
+        console.log(wines_id)
+        return axios.post(`${baseURL}/recommendation`, {
+            Wines: wines_id
+        })
+    },
+    getFilter(color, wine_type, country, vintage) {
+        console.log(color, wine_type, country, vintage);
+        return axios.get(`${baseURL}/filter`, {
+            params: {
+                color,
+                wine_type,
+                country,
+                vintage
+            }
+        })
+    },
     create(data) {
         return this.execute('post', '/', data)
     },

@@ -33,17 +33,21 @@
 <script>
     export default {
         name: "Recommendation",
+        props: {
+            // rec_list
+        },
         data() {
             return {
                 items: []
             }
         },
         created() {
-            let item = {
-                wine_Id: 1,
-                wine: "Здесь будет ваше вино",
-            };
-            this.items.push(item);
+            // let item = {
+            //     wine_Id: 1,
+            //     wine: "Здесь будет ваше вино",
+            // };
+            // this.items.push(item);
+            // this.items = this.rec_list
         }
     }
 </script>

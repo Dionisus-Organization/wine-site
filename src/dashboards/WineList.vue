@@ -84,7 +84,8 @@
                 itemsCount: 20,
                 checkedWines: [],
                 globalItemsCount: 0,
-                pageSize: 20
+                pageSize: 20,
+                rec_list: []
             };
         },
         computed: {
@@ -104,24 +105,33 @@
             // })
         },
         methods: {
-            submitForm(pageNumber = 1) {
-                const queryParams = {
-                    color: this.form.color,
-                    pageNumber: pageNumber,
-                };
-                if (this.form.wineType) {
-                    queryParams["wine-type"] = this.form.wineType;
-                }
-                if (this.form.country) {
-                    queryParams.country = this.form.country[0].toUpperCase() + this.form.country.slice(1).toLowerCase();
-                }
-                if (this.form.vintage) {
-                    queryParams.vintage = this.form.vintage;
-                }
+            submitForm() {
+                // const queryParams = {
+                //     color: this.form.color,
+                //     pageNumber: pageNumber,
+                // };
+                // if (this.form.wineType) {
+                //     queryParams["wine-type"] = this.form.wineType;
+                // }
+                // if (this.form.country) {
+                //     queryParams.country = this.form.country[0].toUpperCase() + this.form.country.slice(1).toLowerCase();
+                // }
+                // if (this.form.vintage) {
+                //     queryParams.vintage = this.form.vintage;
+                // }
 
-                this.isLoading = true;
-                api.getAll().then(() => {
-                    this.isLoading = false;
+                // this.isLoading = true;
+                // api.getAll().then(() => {
+                //     this.isLoading = false;
+                // })
+                api.getFilter(
+                    this.changeCase(this.form.color),
+                    this.form.wineType,
+                    this.changeCase(this.form.country),
+                    this.form.vintage)
+                    .then((data) => {
+                        console.log(data.data);
+                    this.wines = data.data;
                 })
             },
             clickCallback(pageNum) {
@@ -132,10 +142,21 @@
                 })
             },
             recommend() {
-                localStorage.setItem("wines", JSON.stringify(this.checkedWines));
+                let checkedWines_id = this.checkedWines.map(item => item.id);
+                api.getRecommend(checkedWines_id).then((data) => {
+                    console.log("data", data.data);
+                    this.rec_list = data.data
+                })
+                console.log(this.rec_list);
+                // localStorage.setItem("wines", JSON.stringify(this.checkedWines));
             },
             getCheckedWines(value) {
                 this.checkedWines = value;
+            },
+            changeCase(word) {
+                if(word) {
+                    return word[0].toUpperCase() + word.slice(1).toLowerCase()
+                }
             }
         }
     }
