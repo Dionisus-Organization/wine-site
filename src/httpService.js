@@ -42,12 +42,14 @@ export default {
     },
     getFilter(color, wine_type, country, vintage) {
         console.log(color, wine_type, country, vintage);
+        let page = 1;
         return axios.get(`${baseURL}/filter`, {
             params: {
                 color,
                 wine_type,
                 country,
-                vintage
+                vintage,
+                page
             }
         })
     },

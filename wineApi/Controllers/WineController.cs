@@ -74,9 +74,9 @@ namespace wineApi.Controllers
         }
 
         [HttpGet("filter")]
-        public async Task<IEnumerable<WineModel>> GetFilteredWinesByPage([FromBody]FilterParams filter, int page)
+        public async Task<IEnumerable<WineModel>> GetFilteredWinesByPage(string color, string wine_type, string country, string vintage, int page)
         {
-            Cql cql = new(WineControllerHelper.GenerateFilterCql(_tableName, filter.Color, filter.Wine_type, filter.Country, filter.Vintage));
+            Cql cql = new(WineControllerHelper.GenerateFilterCql(_tableName, color, wine_type, country, vintage));
 
             var tempList = ( await CassandraConnection.GetInstance().GetByRequestData<WineModel> ( cql ) ).ToList();
             List<WineModel> sortedResult = tempList.OrderBy ( a => a.Id ).ToList();
