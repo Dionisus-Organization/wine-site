@@ -19,9 +19,9 @@ let router = new Router({
             props: true
         },
         {
-            path: '/',
+            path: '/recommend',
             name: 'recommend',
-            component: () => import('../components/Recommendation.vue'),
+            component: () => import('../dashboards/WineRatesTables.vue'),
             props: true
         },
     ]
