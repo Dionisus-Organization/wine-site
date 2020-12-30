@@ -131,7 +131,8 @@
                     this.form.vintage)
                     .then((data) => {
                         console.log(data.data);
-                    this.wines = data.data;
+                        this.wines = data.data.wineList;
+                        this.globalItemsCount = Math.floor(data.data.count / this.pageSize)
                 })
             },
             clickCallback(pageNum) {

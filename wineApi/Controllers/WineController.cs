@@ -74,7 +74,7 @@ namespace wineApi.Controllers
         }
 
         [HttpGet("filter")]
-        public async Task<IEnumerable<WineModel>> GetFilteredWinesByPage(string color, string wine_type, string country, string vintage, int page)
+        public async Task<JsonResult> GetFilteredWinesByPage(string color, string wine_type, string country, string vintage, int page)
         {
             Cql cql = new(WineControllerHelper.GenerateFilterCql(_tableName, color, wine_type, country, vintage));
 
@@ -90,7 +90,11 @@ namespace wineApi.Controllers
             for ( int i = startIndex; i < loopEndIndex; i++ )
                 pagedList.Add ( sortedResult[i] );
 
-            return pagedList;
+            return new JsonResult ( new FilterResult()
+            {
+                WineList = pagedList,
+                Count = tempList.Count
+            } );
         }
 
         /// <summary>
@@ -134,12 +138,9 @@ namespace wineApi.Controllers
         public int[] Wines { get; set; }
     }
 
-    public class FilterParams
+    public class FilterResult
     {
-        public string Color { get; set; }
-        public string Wine_type { get; set; }
-        public string Country { get; set; }
-        public string Vintage { get; set; }
-
+        public IEnumerable<WineModel> WineList { get; set; }
+        public int Count { get; set; }
     }
 }
