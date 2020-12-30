@@ -24,7 +24,7 @@
                                     v-slot="{ errors }">
                     <label for="vintage" style="position: relative">
                         <input name="vintage" id="vintage" v-model="form.vintage"
-                               placeholder="Vintage" type="number"/>
+                               placeholder="Vintage" type="number" :min='form.minVintage' :max='form.maxVintage'/>
                         <span class="error-text " v-if="errors[0]" style="position: absolute; bottom: -20px; left: 3px">
                                 Vintage is not available
                             </span>
@@ -37,7 +37,7 @@
             </form>
         </div>
         <div class="container" v-if="!isLoading">
-            <WineRatesTable :items="items" @toParent="getCheckedWines"/>
+            <WineRatesTable :items="items" @toParent="getCheckedWines" :showChecklist="true"/>
             <nav>
                 <paginate v-model="winePage"
                         :page-count="globalItemsCount"
@@ -71,7 +71,7 @@
         data() {
             return {
                 form: {
-                    color: 'red',
+                    color: '',
                     wineType: '',
                     country: '',
                     vintage: '',
@@ -80,6 +80,7 @@
                 },
                 winePage: 1,
                 isLoading: true,
+                isWinesChecked: false,
                 wines: [],
                 itemsCount: 20,
                 checkedWines: [],
@@ -94,36 +95,14 @@
             },
         },
         created: async function () {
-            // const { color } = this.form;
             await api.getAll(this.winePage).then((data) => {
                 this.isLoading = false;
                 this.wines = data;
             })
             await api.getCount().then((data) => this.globalItemsCount = Math.floor(data / this.pageSize))
-            // await this.$store.dispatch('getWines', {color}).then(() => {
-            //     this.isLoading = false;
-            // })
         },
         methods: {
             submitForm() {
-                // const queryParams = {
-                //     color: this.form.color,
-                //     pageNumber: pageNumber,
-                // };
-                // if (this.form.wineType) {
-                //     queryParams["wine-type"] = this.form.wineType;
-                // }
-                // if (this.form.country) {
-                //     queryParams.country = this.form.country[0].toUpperCase() + this.form.country.slice(1).toLowerCase();
-                // }
-                // if (this.form.vintage) {
-                //     queryParams.vintage = this.form.vintage;
-                // }
-
-                // this.isLoading = true;
-                // api.getAll().then(() => {
-                //     this.isLoading = false;
-                // })
                 api.getFilter(
                     this.changeCase(this.form.color),
                     this.form.wineType,
@@ -144,12 +123,11 @@
             },
             recommend() {
                 let checkedWines_id = this.checkedWines.map(item => item.id);
-                api.getRecommend(checkedWines_id).then((data) => {
-                    console.log("data", data.data);
-                    this.rec_list = data.data
-                })
-                console.log(this.rec_list);
-                // localStorage.setItem("wines", JSON.stringify(this.checkedWines));
+                if (checkedWines_id) {
+                    localStorage.setItem('checkedWines', checkedWines_id.join());
+                } else {
+                    localStorage.removeItem('checkedWines');
+                }
             },
             getCheckedWines(value) {
                 this.checkedWines = value;

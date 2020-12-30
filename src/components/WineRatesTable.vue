@@ -9,7 +9,7 @@
                     <th scope="col">Vintage</th>
                     <th scope="col">Country</th>
                     <th scope="col">Score</th>
-                    <th scope="col" style="text-align: center"><img src="../assets/like.png" alt="Like"></th>
+                    <th v-if="showChecklist" scope="col" style="text-align: center"><img src="../assets/like.png" alt="Like"></th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +21,7 @@
                     <td>{{item.vintage}}</td>
                     <td>{{item.country}}</td>
                     <td>{{item.score}}</td>
-                    <td style="text-align: center" @click.stop>
+                    <td v-if="showChecklist" style="text-align: center" @click.stop>
                         <input type="checkbox" v-bind:value="item" v-model="checkedWines" @change="change">
                     </td>
                 </router-link>
@@ -34,6 +34,10 @@
     export default {
         name: "WineRatesTable",
         props: {
+            showChecklist: {
+                type: Boolean,
+                required: true
+            },
             items: {
                 type: Array,
                 required: true
