@@ -98,20 +98,19 @@ namespace wineApi.Controllers
             var whiteWineCql = WineControllerHelper.GenerateCql(_tableName, "White", country, (int) white);
             var pinkWineCql = WineControllerHelper.GenerateCql(_tableName, "Pink", country, (int) pink);
 
-            var redWineResult = redWineCql is not null ? await GetWineData(redWineCql) : new List<WineModel>();
-            var whiteWineResult = whiteWineCql is not null ? await GetWineData(whiteWineCql) : new List<WineModel>();
-            var pinkWineResult = pinkWineCql is not null ? await GetWineData(pinkWineCql) : new List<WineModel>();
+            var redWineResult = redWineCql is not null ? 
+                await WineControllerHelper.GetWineData(redWineCql) : new List<WineModel>();
+            
+            var whiteWineResult = whiteWineCql is not null ? 
+                await WineControllerHelper.GetWineData(whiteWineCql) : new List<WineModel>();
+            
+            var pinkWineResult = pinkWineCql is not null ? 
+                await WineControllerHelper.GetWineData(pinkWineCql) : new List<WineModel>();
 
             redWineResult.AddRange(whiteWineResult);
             redWineResult.AddRange(pinkWineResult);
 
             return redWineResult;
-        }
-
-        private async Task<List<WineModel>> GetWineData(Cql cql)
-        {
-            return await CassandraConnection.GetInstance()
-                .GetByRequestData<WineModel>(cql);
         }
     }
 

@@ -1,5 +1,8 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 using Cassandra.Mapping;
+using wineApi.Cassandra;
 
 namespace wineApi.Controllers
 {
@@ -55,6 +58,22 @@ namespace wineApi.Controllers
         private static string IsContainParams(string cql)
         {
             return cql.Contains('=') ? "and " : string.Empty;
+        }
+        
+        /// <summary>
+        /// Retrieve data for recommendation
+        /// </summary>
+        /// <param name="cql">Cql request</param>
+        /// <returns>List of wines</returns>
+        public static async Task<List<WineModel>> GetWineData(Cql cql)
+        {
+            return await CassandraConnection.GetInstance()
+                .GetByRequestData<WineModel>(cql);
+        }
+
+        public static void GetDataForRecommendation()
+        {
+            
         }
     }
 }
