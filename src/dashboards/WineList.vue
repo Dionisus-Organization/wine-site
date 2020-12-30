@@ -31,13 +31,13 @@
                     </label>
                 </ValidationProvider>
                 <button type="submit" :disabled="isLoading">Show</button>
-                <RouterLink :to="{name: 'recommend'}">
-                    <button type="button" v-on:click="recommend">Recommend</button>
-                </RouterLink>
             </form>
         </div>
         <div class="container" v-if="!isLoading">
             <WineRatesTable :items="items" @toParent="getCheckedWines" :showChecklist="true"/>
+            <RouterLink :to="{name: 'recommend'}">
+                <button type="button" v-on:click="recommend" :disabled="!checkedWines.length" class="btnRec" v-bind:class="{ disabled: !checkedWines.length }">Recommend</button>
+            </RouterLink>
             <nav>
                 <paginate v-model="winePage"
                         :page-count="globalItemsCount"
@@ -159,6 +159,10 @@
                 height: 30px;
             }
 
+            button:focus, button:hover {
+                background: $primaryDarkColorFocus;
+            }
+
             label select:focus, select:hover, input:focus, input:hover, textarea:focus, textarea:hover {
                 background: $primaryLightColorFocus;
                 border: 1px solid $primaryColorFocus;
@@ -174,21 +178,25 @@
                 color: $textColorOnColorBackground;
                 opacity: 0.5;
             }
-
-            button {
-                box-sizing: content-box;
-                border: none;
-                height: 30px;
-                padding: 5px 15px;
-                border-radius: 3px;
-                background: $primaryDarkColor;
-                color: $textColorOnColorBackground;
-            }
-
-            button:focus, button:hover {
-                background: $primaryDarkColorFocus;
-            }
         }
+    }
+
+    button {
+        box-sizing: content-box;
+        border: none;
+        height: 30px;
+        padding: 5px 15px;
+        border-radius: 3px;
+        background: $primaryDarkColor;
+        color: $textColorOnColorBackground;
+    }
+
+    .btnRec {
+        float: right
+    }
+
+    .disabled {
+        background-color: gray;
     }
 
     nav ul.pagination {
